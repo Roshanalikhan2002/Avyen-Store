@@ -36,13 +36,6 @@
         position: relative; 
         overflow: hidden; 
     }
-    .hero::before {
-        content: "";
-        position: absolute;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.05); /* Very subtle overlay to help text readability if needed */
-        z-index: 1;
-    }
     .hero-content { position: relative; z-index: 2; text-align: center; color: #000; }
     .hero-content h1 { font-family: var(--font-serif); font-size: clamp(40px, 8vw, 80px); margin-bottom: 20px; line-height: 1.1; }
     .hero-content p { font-size: 18px; margin-bottom: 30px; letter-spacing: 1px; }
@@ -95,11 +88,7 @@
 
 <main>
     <section class="hero">
-        <div class="hero-content">
-            <h1>Beyond Hair Care.<br>A Hair Ritual.</h1>
-            <p>Scientifically Formulated. Naturally Inspired.</p>
-            <a href="/products/revitalizing-shampoo" class="cta-button">Experience Avyen</a>
-        </div>
+        <!-- Text and buttons removed as per user request -->
     </section>
 
     <section class="section-container">
