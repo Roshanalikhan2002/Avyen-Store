@@ -1,0 +1,90 @@
+{% comment %}
+  Avyen - Collection Template
+{% endcomment %}
+
+<style>
+    :root {
+        --primary: #121212;
+        --secondary: #c9a227;
+        --background: #ffffff;
+        --font-serif: 'Playfair Display', serif;
+        --font-sans: 'Inter', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-sans); color: var(--primary); background: var(--background); }
+
+    header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; border-bottom: 1px solid #eee; position: sticky; top: 0; background: #fff; z-index: 100; }
+    .logo { font-family: var(--font-serif); font-size: 28px; color: var(--primary); text-decoration: none; position: absolute; left: 50%; transform: translateX(-50%); font-weight: 700; letter-spacing: 2px; }
+    nav a { text-decoration: none; color: #000; font-weight: 600; font-size: 13px; text-transform: uppercase; margin-right: 25px; }
+
+    .collection-header { padding: 100px 5%; text-align: center; background: #f9f9f9; }
+    .collection-header h1 { font-family: var(--font-serif); font-size: 48px; margin-bottom: 20px; }
+    .collection-header p { font-size: 18px; color: #666; max-width: 600px; margin: 0 auto; }
+
+    .collection-grid { padding: 80px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1400px; margin: 0 auto; }
+    .product-card { text-decoration: none; color: #000; group: hover; }
+    .product-card-img { width: 100%; aspect-ratio: 1; background: #f5f5f5; border-radius: 12px; overflow: hidden; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+    .product-card:hover .product-card-img { transform: translateY(-10px); }
+    
+    .product-card h3 { font-family: var(--font-serif); font-size: 20px; margin-bottom: 5px; }
+    .product-card p { font-size: 14px; color: #666; margin-bottom: 10px; }
+    .product-card .price { font-weight: 700; font-size: 16px; color: var(--secondary); }
+
+    footer { background: #000; color: #fff; padding: 60px 5%; text-align: center; }
+</style>
+
+<header>
+    <nav><a href="/">Home</a></nav>
+    <a href="/" class="logo">AVYEN</a>
+    <div class="header-icons">
+        <a href="#" onclick="gOpenCart()" style="color:#000;"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg></a>
+    </div>
+</header>
+
+<main>
+    <section class="collection-header">
+        <h1>All Essentials</h1>
+        <p>Discover our curated collection of high-performance hair care designed for the modern individual.</p>
+    </section>
+
+    <section class="collection-grid">
+        <a href="/products/revitalizing-shampoo" class="product-card">
+            <div class="product-card-img">
+                <div style="color:#999;">SHAMPOO</div>
+            </div>
+            <h3>Revitalizing Shampoo</h3>
+            <p>Strength & Growth</p>
+            <div class="price">Rs. 1,450</div>
+        </a>
+        <a href="#" class="product-card">
+            <div class="product-card-img">
+                <div style="color:#999;">CONDITIONER</div>
+            </div>
+            <h3>Silk-Finish Conditioner</h3>
+            <p>Hydration & Shine</p>
+            <div class="price">Rs. 1,650</div>
+        </a>
+        <a href="#" class="product-card">
+            <div class="product-card-img">
+                <div style="color:#999;">SERUM</div>
+            </div>
+            <h3>Active Follicle Serum</h3>
+            <p>Scalp Rejuvenation</p>
+            <div class="price">Rs. 2,200</div>
+        </a>
+        <a href="#" class="product-card">
+            <div class="product-card-img">
+                <div style="color:#999;">MASK</div>
+            </div>
+            <h3>Deep Repair Mask</h3>
+            <p>Weekly Treatment</p>
+            <div class="price">Rs. 2,800</div>
+        </a>
+    </section>
+</main>
+
+<footer>
+    <div class="logo" style="position:static; transform:none; color:#fff; margin-bottom:20px;">AVYEN</div>
+    <div style="font-size:12px; opacity:0.5;">&copy; 2024 AVYEN. Excellence in Every Strand.</div>
+</footer>

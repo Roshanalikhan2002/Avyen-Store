@@ -1,0 +1,142 @@
+{% comment %}
+  Avyen - Product Template (Revitalizing Shampoo)
+{% endcomment %}
+
+<style>
+    :root {
+        --primary: #121212;
+        --secondary: #c9a227;
+        --background: #ffffff;
+        --text: #121212;
+        --border: #eeeeee;
+        --font-serif: 'Playfair Display', serif;
+        --font-sans: 'Inter', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--background); line-height: 1.6; }
+
+    header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; border-bottom: 1px solid #eee; background: #fff; position: sticky; top: 0; z-index: 100; }
+    .logo { font-family: var(--font-serif); font-size: 28px; color: var(--primary); text-decoration: none; position: absolute; left: 50%; transform: translateX(-50%); font-weight: 700; letter-spacing: 2px; }
+    nav a { text-decoration: none; color: #000; font-weight: 600; font-size: 13px; text-transform: uppercase; margin-right: 25px; }
+
+    .product-main { display: flex; padding: 60px 5%; gap: 60px; max-width: 1400px; margin: 0 auto; }
+    .product-gallery { flex: 1.2; }
+    .main-image { width: 100%; height: 600px; background-color: #f5f5f5; border-radius: 12px; overflow: hidden; display: flex; align-items: center; justify-content: center; color: #999; }
+    .main-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    .product-details { flex: 1; }
+    .product-details h1 { font-family: var(--font-serif); font-size: 42px; color: var(--primary); line-height: 1.2; margin-bottom: 10px; }
+    .subtitle { font-size: 18px; color: #666; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+    .description { font-size: 16px; color: #444; margin-bottom: 30px; max-width: 500px; }
+    .price { font-size: 28px; font-weight: 700; color: var(--primary); margin-bottom: 30px; }
+
+    .bundle-selector { margin-bottom: 30px; display: flex; flex-direction: column; gap: 15px; }
+    .bundle-card { border: 2px solid #eee; border-radius: 12px; padding: 20px; cursor: pointer; transition: 0.3s; position: relative; display: flex; justify-content: space-between; align-items: center; }
+    .bundle-card:hover { border-color: var(--primary); }
+    .bundle-card.selected { border-color: var(--primary); background: #fafafa; }
+    .bundle-card.selected::after { content: '✓'; position: absolute; top: -10px; right: -10px; background: var(--primary); color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    
+    .bundle-info h4 { font-size: 16px; margin-bottom: 4px; }
+    .bundle-info p { font-size: 13px; color: #666; }
+    .bundle-price { font-weight: 700; font-size: 16px; }
+
+    .atc-btn { width: 100%; background: #000; color: #fff; padding: 20px; border: none; border-radius: 40px; font-weight: 700; font-size: 16px; text-transform: uppercase; cursor: pointer; letter-spacing: 2px; transition: 0.3s; margin-bottom: 40px; }
+    .atc-btn:hover { background: #333; }
+
+    .accordion { border-top: 1px solid var(--border); }
+    .accordion-item { border-bottom: 1px solid var(--border); }
+    .accordion-header { width: 100%; padding: 20px 0; background: none; border: none; display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 13px; text-transform: uppercase; cursor: pointer; letter-spacing: 1px; }
+    .accordion-content { padding-bottom: 20px; font-size: 14px; color: #555; display: none; }
+    .accordion-item.active .accordion-content { display: block; }
+
+    .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; padding: 100px 5%; background: #f9f9f9; }
+    .feature-item h2 { font-family: var(--font-serif); font-size: 32px; margin-bottom: 20px; }
+    .feature-item p { font-size: 16px; color: #555; }
+
+    @media (max-width: 768px) {
+        .product-main { flex-direction: column; padding: 20px 5%; }
+        .main-image { height: 350px; }
+        .feature-grid { grid-template-columns: 1fr; }
+    }
+</style>
+
+<header>
+    <nav><a href="/collections/all">Shop</a></nav>
+    <a href="/" class="logo">AVYEN</a>
+    <div class="header-icons">
+        <a href="#" onclick="gOpenCart()" style="color:#000;"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg></a>
+    </div>
+</header>
+
+<main>
+    <section class="product-main">
+        <div class="product-gallery">
+            <div class="main-image">
+                <div style="text-align:center;">SHAMPOO BOTTLE IMAGE</div>
+            </div>
+        </div>
+        <div class="product-details">
+            <p class="subtitle">The Core Collection</p>
+            <h1>Revitalizing Shampoo</h1>
+            <div class="description">A sophisticated blend of Biotin, Caffeine, and Organic Argan Oil designed to stimulate the scalp and fortify every strand from root to tip. Perfect for all hair types seeking volume and vitality.</div>
+            <div class="price">Rs. 1,450</div>
+
+            <div class="bundle-selector">
+                <div class="bundle-card selected">
+                    <div class="bundle-info">
+                        <h4>Single Bottle</h4>
+                        <p>250ml - Monthly Supply</p>
+                    </div>
+                    <div class="bundle-price">Rs. 1,450</div>
+                </div>
+                <div class="bundle-card">
+                    <div class="bundle-info">
+                        <h4>The Duo Set</h4>
+                        <p>2 Bottles - Better Value</p>
+                    </div>
+                    <div class="bundle-price">Rs. 2,600</div>
+                </div>
+            </div>
+
+            <button class="atc-btn" onclick="gAddToCart('123456', this)">Add to Ritual</button>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="this.parentElement.classList.toggle('active')">Ingredients <span>+</span></button>
+                    <div class="accordion-content">Aqua, Sodium Lauroyl Methyl Isethionate, Biotin, Caffeine, Argania Spinosa Kernel Oil, Panthenol, Rosemary Leaf Oil, Citric Acid.</div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="this.parentElement.classList.toggle('active')">How to Use <span>+</span></button>
+                    <div class="accordion-content">Apply to wet hair and massage into scalp for 60 seconds. Rinse thoroughly. For optimal results, follow with Avyen Silk-Finish Conditioner.</div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="this.parentElement.classList.toggle('active')">The Science <span>+</span></button>
+                    <div class="accordion-content">Our caffeine-infused formula penetrates the hair follicles to prolong the growth phase, while Biotin strengthens the keratin structure.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-grid">
+        <div class="feature-item">
+            <h2>Scalp Stimulation</h2>
+            <p>Active caffeine molecules wake up the follicles, promoting healthier and faster hair growth through increased micro-circulation.</p>
+        </div>
+        <div class="feature-item">
+             <div style="width:100%; height:200px; background:#ddd; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#666;">FEATURE IMAGE</div>
+        </div>
+        <div class="feature-item">
+             <div style="width:100%; height:200px; background:#ddd; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#666;">INGREDIENT IMAGE</div>
+        </div>
+        <div class="feature-item">
+            <h2>Clean Formula</h2>
+            <p>Zero Sulfates. Zero Parabens. Zero Silicones. We believe in high-performance hair care without the toxic compromise.</p>
+        </div>
+    </section>
+</main>
+
+<footer style="background:#000; color:#fff; padding:60px 5%; text-align:center;">
+    <div class="logo" style="position:static; transform:none; color:#fff; margin-bottom:20px;">AVYEN</div>
+    <div style="font-size:12px; opacity:0.5;">&copy; 2024 AVYEN. Crafted for Excellence.</div>
+</footer>
