@@ -1,0 +1,84 @@
+{% comment %}
+  Avyen - Login Template
+{% endcomment %}
+
+<style>
+    :root {
+        --primary: #121212;
+        --secondary: #c9a227;
+        --background: #ffffff;
+        --font-serif: 'Playfair Display', serif;
+        --font-sans: 'Inter', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-sans); color: var(--primary); background: var(--background); }
+
+    .login-container { max-width: 500px; margin: 120px auto; padding: 0 5%; text-align: center; }
+    .login-container h1 { font-family: var(--font-serif); font-size: 42px; margin-bottom: 15px; }
+    .login-container p { color: #666; margin-bottom: 40px; }
+
+    .form-group { text-align: left; margin-bottom: 25px; }
+    .form-group label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+    .form-input { 
+        width: 100%; 
+        padding: 18px 25px; 
+        border: 1px solid #eee; 
+        border-radius: 50px; 
+        font-family: var(--font-sans); 
+        font-size: 15px; 
+        outline: none; 
+        background: #f9f9f9;
+        transition: 0.3s;
+    }
+    .form-input:focus { border-color: var(--primary); background: #fff; }
+    
+    .submit-btn { 
+        width: 100%; 
+        background: var(--primary); 
+        color: #fff; 
+        padding: 20px; 
+        border: none; 
+        border-radius: 50px; 
+        font-weight: 700; 
+        text-transform: uppercase; 
+        letter-spacing: 2px; 
+        cursor: pointer; 
+        transition: 0.3s; 
+        margin-top: 20px;
+    }
+    .submit-btn:hover { background: var(--secondary); color: #000; }
+
+    .login-links { margin-top: 30px; font-size: 14px; color: #777; }
+    .login-links a { color: var(--primary); text-decoration: none; font-weight: 700; }
+</style>
+
+<div class="login-container">
+    <h1>Welcome Back</h1>
+    <p>Sign in to access your Avyen ritual history.</p>
+
+    {% form 'customer_login' %}
+        {% if form.errors %}
+            <div style="color: #d32f2f; margin-bottom: 20px; font-size: 14px;">
+                {{ form.errors | default_errors }}
+            </div>
+        {% endif %}
+
+        <div class="form-group">
+            <label for="CustomerEmail">Email Address</label>
+            <input type="email" name="customer[email]" id="CustomerEmail" class="form-input" placeholder="email@example.com" required>
+        </div>
+
+        <div class="form-group">
+            <label for="CustomerPassword">Password</label>
+            <input type="password" name="customer[password]" id="CustomerPassword" class="form-input" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="submit-btn">Sign In</button>
+
+        <div class="login-links">
+            <p>Don't have an account? <a href="/account/register">Create one</a></p>
+            <p style="margin-top: 10px;"><a href="/account/login#recover">Forgot password?</a></p>
+        </div>
+    {% endform %}
+</div>
