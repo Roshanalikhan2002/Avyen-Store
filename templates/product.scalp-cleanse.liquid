@@ -95,6 +95,44 @@
     @media (max-width: 480px) {
         .community-grid { grid-template-columns: 1fr; }
     }
+
+    .faq-section {
+        padding: 100px 5%;
+        display: flex;
+        gap: 80px;
+        max-width: 1400px;
+        margin: 0 auto;
+        align-items: center;
+        background: #fff;
+    }
+    .faq-container { flex: 1; text-align: left; }
+    .faq-container h2 { font-family: var(--font-sans); font-size: 32px; font-weight: 700; margin-bottom: 40px; }
+    .faq-image { flex: 1; border-radius: 20px; overflow: hidden; height: 550px; background: #f9f9f9; }
+    
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-question {
+        width: 100%;
+        padding: 25px 0;
+        background: none;
+        border: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: left;
+        color: var(--primary);
+    }
+    .faq-answer { padding-bottom: 25px; font-size: 15px; color: #666; display: none; line-height: 1.6; }
+    .faq-item.active .faq-answer { display: block; }
+    .faq-item.active .faq-question span { transform: rotate(45deg); }
+    .faq-question span { transition: transform 0.3s; font-size: 24px; color: #999; }
+
+    @media (max-width: 768px) {
+        .faq-section { flex-direction: column; gap: 40px; padding: 60px 5%; }
+        .faq-image { width: 100%; height: 350px; }
+    }
 </style>
 
 <header>
@@ -193,6 +231,31 @@
         <div class="feature-item">
             <h2>Root Stimulation</h2>
             <p>Peppermint and Tea Tree oils provide a cooling sensation that triggers blood flow to the roots, delivering essential nutrients for thicker hair.</p>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="faq-container">
+            <h2>FAQ</h2>
+            <div class="faq-item">
+                <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">How often should I use Scalp Cleanse? <span>+</span></button>
+                <div class="faq-answer">For best results, use 2-3 times a week. It's gentle enough for more frequent use if you have an oily scalp.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">Is this safe for color-treated hair? <span>+</span></button>
+                <div class="faq-answer">Yes, our formula is sulfate-free and safe for all hair types, including color and chemically treated hair.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">When will I see results? <span>+</span></button>
+                <div class="faq-answer">Most users notice a fresher, cleaner scalp after the first wash. Significant growth improvements usually appear after 8-12 weeks of consistent use.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">Can I use it with other brands? <span>+</span></button>
+                <div class="faq-answer">Yes, but for optimal results, we recommend pairing it with our Conditioning Creme to maintain the perfect pH balance.</div>
+            </div>
+        </div>
+        <div class="faq-image">
+             <div style="width:100%; height:100%; background:#eee; display:flex; align-items:center; justify-content:center; color:#999;">FAQ IMAGE</div>
         </div>
     </section>
 
