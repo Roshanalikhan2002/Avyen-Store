@@ -1,0 +1,157 @@
+{% comment %}
+  Avyen - Product Template: Scalp Cleanse
+{% endcomment %}
+
+<style>
+    :root {
+        --primary: #121212;
+        --secondary: #c9a227;
+        --background: #ffffff;
+        --text: #121212;
+        --border: #eeeeee;
+        --font-serif: 'Playfair Display', serif;
+        --font-sans: 'Inter', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--background); line-height: 1.6; }
+
+    header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; border-bottom: 1px solid #eee; background: #fff; position: sticky; top: 0; z-index: 100; }
+    .logo { font-family: var(--font-serif); font-size: 28px; color: var(--primary); text-decoration: none; position: absolute; left: 50%; transform: translateX(-50%); font-weight: 700; letter-spacing: 2px; }
+    nav a { text-decoration: none; color: #000; font-weight: 600; font-size: 13px; text-transform: uppercase; margin-right: 25px; }
+
+    .product-main { display: flex; padding: 60px 5%; gap: 60px; max-width: 1400px; margin: 0 auto; }
+    .product-gallery { flex: 1.2; }
+    .main-image { width: 100%; height: 650px; background-color: #f7f7f7; border-radius: 12px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .main-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    .product-details { flex: 1; }
+    .product-details h1 { font-family: var(--font-serif); font-size: 48px; color: var(--primary); line-height: 1.1; margin-bottom: 10px; }
+    .subtitle { font-size: 16px; color: var(--secondary); margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+    .description { font-size: 16px; color: #444; margin-bottom: 35px; max-width: 500px; line-height: 1.8; }
+    .price { font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 35px; font-family: var(--font-serif); }
+
+    .bundle-selector { margin-bottom: 35px; display: flex; flex-direction: column; gap: 15px; }
+    .bundle-card { border: 1px solid #ddd; border-radius: 12px; padding: 22px; cursor: pointer; transition: 0.3s; position: relative; display: flex; justify-content: space-between; align-items: center; }
+    .bundle-card:hover { border-color: var(--primary); }
+    .bundle-card.selected { border-color: var(--primary); background: #fafafa; border-width: 2px; }
+    .bundle-card.selected::after { content: '✓'; position: absolute; top: -10px; right: -10px; background: var(--primary); color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    
+    .bundle-info h4 { font-size: 16px; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+    .bundle-info p { font-size: 13px; color: #777; }
+    .bundle-price { font-weight: 700; font-size: 18px; }
+
+    .atc-btn { width: 100%; background: #000; color: #fff; padding: 22px; border: none; border-radius: 50px; font-weight: 700; font-size: 15px; text-transform: uppercase; cursor: pointer; letter-spacing: 2px; transition: 0.3s; margin-bottom: 45px; }
+    .atc-btn:hover { background: var(--secondary); color: #000; }
+
+    .accordion { border-top: 1px solid var(--border); }
+    .accordion-item { border-bottom: 1px solid var(--border); }
+    .accordion-header { width: 100%; padding: 25px 0; background: none; border: none; display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 12px; text-transform: uppercase; cursor: pointer; letter-spacing: 2px; }
+    .accordion-content { padding-bottom: 25px; font-size: 14px; color: #666; display: none; line-height: 1.7; }
+    .accordion-item.active .accordion-content { display: block; }
+
+    .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 60px; padding: 120px 5%; background: #fff; max-width: 1400px; margin: 0 auto; align-items: center; }
+    .feature-item h2 { font-family: var(--font-serif); font-size: 38px; margin-bottom: 25px; line-height: 1.2; }
+    .feature-item p { font-size: 16px; color: #555; line-height: 1.8; }
+    .feature-image { width: 100%; aspect-ratio: 1; background: #f9f9f9; border-radius: 20px; overflow: hidden; }
+    .feature-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    @media (max-width: 768px) {
+        .product-main { flex-direction: column; padding: 30px 5%; }
+        .main-image { height: 450px; }
+        .feature-grid { grid-template-columns: 1fr; padding: 80px 5%; }
+        .product-details h1 { font-size: 36px; }
+    }
+</style>
+
+<header>
+    <nav><a href="/collections/all">Shop</a></nav>
+    <a href="/" class="logo">AVYEN</a>
+    <div class="header-icons">
+        <a href="#" onclick="gOpenCart()" style="color:#000;"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg></a>
+    </div>
+</header>
+
+<main>
+    <section class="product-main">
+        <div class="product-gallery">
+            <div class="main-image">
+                <img src="{{ 'scalp-cleanse.jpg' | asset_url }}" alt="Scalp Cleanse">
+            </div>
+        </div>
+        <div class="product-details">
+            <p class="subtitle">Purifying Ritual</p>
+            <h1>Scalp Cleanse</h1>
+            <div class="description">A sophisticated botanical formula engineered to detoxify the scalp while fortifying hair roots. Our unique blend of Salicylic Acid and Peppermint Oil removes impurities, rebalances sebum, and stimulates micro-circulation for optimal growth.</div>
+            <div class="price">Rs. 1,450</div>
+
+            <div class="bundle-selector">
+                <div class="bundle-card selected">
+                    <div class="bundle-info">
+                        <h4>Single Bottle</h4>
+                        <p>250ml - Daily Purification</p>
+                    </div>
+                    <div class="bundle-price">Rs. 1,450</div>
+                </div>
+                <div class="bundle-card">
+                    <div class="bundle-info">
+                        <h4>The Duo Pack</h4>
+                        <p>2 Bottles - Extended Ritual</p>
+                    </div>
+                    <div class="bundle-price">Rs. 2,600</div>
+                </div>
+            </div>
+
+            <button class="atc-btn" onclick="gAddToCart('{{ product.variants.first.id }}', this)">Add to Ritual</button>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="this.parentElement.classList.toggle('active')">Ingredients <span>+</span></button>
+                    <div class="accordion-content">Aqua, Sodium Lauroyl Methyl Isethionate, Salicylic Acid, Mentha Piperita (Peppermint) Oil, Melaleuca Alternifolia (Tea Tree) Leaf Oil, Biotin, Panthenol, Rosemary Extract.</div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="this.parentElement.classList.toggle('active')">How to Use <span>+</span></button>
+                    <div class="accordion-content">Apply to wet hair, focusing on the scalp. Massage gently for 2 minutes to allow the active botanicals to penetrate. Rinse thoroughly with lukewarm water.</div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="this.parentElement.classList.toggle('active')">The Result <span>+</span></button>
+                    <div class="accordion-content">Immediate scalp freshness, reduced flakiness, and a clean foundation for healthy, voluminous hair growth.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-grid" style="background: #f9f9f9;">
+        <div class="feature-item">
+            <h2>Scalp Detoxification</h2>
+            <p>Salicylic acid gently exfoliates the scalp, removing dead skin cells and product buildup that can clog follicles and stunt growth.</p>
+        </div>
+        <div class="feature-item">
+             <div class="feature-image">
+                 <div style="width:100%; height:100%; background:#eee; display:flex; align-items:center; justify-content:center; color:#999;">DETOX IMAGE</div>
+             </div>
+        </div>
+    </section>
+
+    <section class="feature-grid">
+        <div class="feature-item">
+             <div class="feature-image">
+                 <div style="width:100%; height:100%; background:#eee; display:flex; align-items:center; justify-content:center; color:#999;">GROWTH IMAGE</div>
+             </div>
+        </div>
+        <div class="feature-item">
+            <h2>Root Stimulation</h2>
+            <p>Peppermint and Tea Tree oils provide a cooling sensation that triggers blood flow to the roots, delivering essential nutrients for thicker hair.</p>
+        </div>
+    </section>
+</main>
+
+<script>
+    // Simple toggle for bundles (UI only)
+    document.querySelectorAll('.bundle-card').forEach(card => {
+        card.addEventListener('click', () => {
+            document.querySelectorAll('.bundle-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+        });
+    });
+</script>
