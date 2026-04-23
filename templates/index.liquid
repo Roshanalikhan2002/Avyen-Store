@@ -319,6 +319,8 @@
         position: relative;
         aspect-ratio: 4/5;
         background: #f7f7f7;
+        background-size: cover;
+        background-position: center;
         border-radius: 15px;
         overflow: hidden;
         cursor: pointer;
@@ -449,7 +451,7 @@
 
     <section class="expert-section">
         <div class="expert-image">
-             <div style="width:100%; height:100%; background: #ccc; display:flex; align-items:center; justify-content:center; color:#666;">EXPERT IMAGE</div>
+             <img src="{{ 'expert-dr-elena.png' | asset_url }}" alt="Dr. Elena Vance" style="width:100%; height:100%; object-fit:cover;">
         </div>
         <div class="expert-content">
             <div class="expert-quote">"True hair health begins at the root. We've spent years perfecting a formula that balances scientific efficacy with the purity of nature."</div>
@@ -461,16 +463,16 @@
     <section class="concern-section">
         <h2 class="hollow-heading">Shop By Concern</h2>
         <div class="concern-grid">
-            <a href="/collections/hair-growth" class="concern-item">
+            <a href="/collections/hair-growth" class="concern-item" style="background-image: url('{{ 'home-ugc-1.jpg' | asset_url }}');">
                 <span class="concern-label">Hair Growth</span>
             </a>
-            <a href="/collections/dandruff" class="concern-item">
+            <a href="/collections/dandruff" class="concern-item" style="background-image: url('{{ 'home-ugc-2.jpg' | asset_url }}');">
                 <span class="concern-label">Dandruff</span>
             </a>
-            <a href="/collections/damage-repair" class="concern-item">
+            <a href="/collections/damage-repair" class="concern-item" style="background-image: url('{{ 'home-ugc-3.jpg' | asset_url }}');">
                 <span class="concern-label">Damage Repair</span>
             </a>
-            <a href="/collections/oil-control" class="concern-item">
+            <a href="/collections/oil-control" class="concern-item" style="background-image: url('{{ 'home-ugc-4.jpg' | asset_url }}');">
                 <span class="concern-label">Oil Control</span>
             </a>
         </div>
