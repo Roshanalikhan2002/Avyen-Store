@@ -158,6 +158,25 @@
     .product-card p { font-size: 15px; color: #777; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
     .product-card .price { font-weight: 700; font-size: 18px; color: var(--secondary); }
 
+    .view-details-btn {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 25px;
+        background: #000;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-radius: 40px;
+        transition: 0.3s;
+    }
+    .view-details-btn:hover {
+        background: var(--secondary);
+        color: #000;
+    }
+
     @media (max-width: 768px) {
         .collection-grid { grid-template-columns: 1fr; gap: 60px; }
         .collection-header { padding: 80px 5% 40px; }
@@ -335,6 +354,7 @@
             <h3>Scalp Cleanse</h3>
             <p>Purifying Ritual</p>
             <div class="price">Rs. 1,450</div>
+            <div style="margin-top: 15px;"><span class="view-details-btn">View Details</span></div>
         </a>
         <a href="/products/conditioning-creme" class="product-card">
             <div class="product-card-img">
@@ -343,6 +363,7 @@
             <h3>Conditioning Creme</h3>
             <p>Nourishing Ritual</p>
             <div class="price">Rs. 1,650</div>
+            <div style="margin-top: 15px;"><span class="view-details-btn">View Details</span></div>
         </a>
     </section>
 </main>
