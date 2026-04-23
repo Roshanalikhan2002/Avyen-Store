@@ -17,11 +17,57 @@
     body { font-family: var(--font-sans); color: var(--text); background: var(--background); overflow-x: hidden; }
 
     .announcement-bar { background: #000; color: #fff; text-align: center; padding: 10px 0; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
+    @media (max-width: 768px) {
+        .announcement-bar { font-size: 10px; padding: 12px 2%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    }
 
     header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; border-bottom: 1px solid #eee; position: sticky; top: 0; background: #fff; z-index: 1000; }
     .logo { font-family: var(--font-serif); font-size: 32px; font-weight: 700; color: var(--primary); text-decoration: none; letter-spacing: 4px; position: absolute; left: 50%; transform: translateX(-50%); }
     nav a { text-decoration: none; color: #000; font-weight: 600; font-size: 13px; text-transform: uppercase; margin: 0 15px; letter-spacing: 1px; }
     .header-icons { display: flex; gap: 20px; }
+
+    .menu-btn { display: none; cursor: pointer; }
+    
+    .mobile-drawer {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 85%;
+        max-width: 400px;
+        height: 100%;
+        background: #fff;
+        z-index: 2000;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 100px 10%;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        box-shadow: 20px 0 60px rgba(0,0,0,0.1);
+    }
+    .mobile-drawer.active { left: 0; }
+    .mobile-drawer a { font-family: var(--font-serif); font-size: 32px; text-decoration: none; color: #000; font-weight: 700; }
+    .drawer-close { position: absolute; top: 30px; right: 30px; font-size: 32px; cursor: pointer; }
+    .drawer-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+        backdrop-filter: blur(4px);
+        z-index: 1999;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
+    }
+    .drawer-overlay.active { opacity: 1; visibility: visible; }
+
+    @media (max-width: 768px) {
+        header { justify-content: flex-end; }
+        nav { display: none; }
+        .menu-btn { display: block; position: absolute; left: 5%; }
+        .logo { font-size: 24px; letter-spacing: 2px; }
+    }
 
     .hero { 
         width: 100%; 
@@ -254,6 +300,9 @@
 <div class="announcement-bar">Elevate Your Hair Ritual — Free Shipping On All Sets</div>
 
 <header>
+    <div class="menu-btn" onclick="toggleMenu()">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </div>
     <nav><a href="/collections/all">Shop</a><a href="#">Philosophy</a></nav>
     <a href="/" class="logo">AVYEN</a>
     <div class="header-icons">
@@ -261,6 +310,15 @@
         <a href="#" onclick="gOpenCart()" style="color:#000;"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></a>
     </div>
 </header>
+
+<div class="drawer-overlay" onclick="toggleMenu()"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-close" onclick="toggleMenu()">×</div>
+    <a href="/">Home</a>
+    <a href="/collections/all">Shop</a>
+    <a href="#">Philosophy</a>
+    <a href="/pages/contact">Contact</a>
+</div>
 
 <main>
     <section class="hero">
@@ -375,4 +433,10 @@
         </div>
         <div class="footer-bottom">&copy; 2024 AVYEN. All rights reserved.</div>
     </footer>
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileDrawer').classList.toggle('active');
+            document.querySelector('.drawer-overlay').classList.toggle('active');
+        }
+    </script>
 </main>
