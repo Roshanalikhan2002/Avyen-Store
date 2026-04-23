@@ -104,6 +104,58 @@
             padding: 60px 5%;
         }
     }
+
+    .concern-section {
+        padding: 100px 5%;
+        text-align: center;
+        background: #fff;
+    }
+    .concern-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    .concern-item {
+        position: relative;
+        aspect-ratio: 4/5;
+        background: #f7f7f7;
+        border-radius: 15px;
+        overflow: hidden;
+        cursor: pointer;
+        display: flex;
+        align-items: flex-end;
+        padding: 30px;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+    }
+    .concern-item:hover { transform: translateY(-5px); }
+    .concern-item::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(transparent 50%, rgba(0,0,0,0.5));
+        z-index: 1;
+    }
+    .concern-label {
+        position: relative;
+        z-index: 2;
+        color: #fff;
+        font-family: var(--font-serif);
+        font-size: 24px;
+        text-align: left;
+    }
+    @media (max-width: 1024px) {
+        .concern-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+        .concern-grid { grid-template-columns: 1fr; }
+        .concern-section { padding: 60px 5%; }
+    }
 </style>
 
 <div class="announcement-bar">Elevate Your Hair Ritual — Free Shipping On All Sets</div>
@@ -167,6 +219,24 @@
             <div class="expert-quote">"True hair health begins at the root. We've spent years perfecting a formula that balances scientific efficacy with the purity of nature."</div>
             <div style="font-weight:700; text-transform:uppercase; letter-spacing:2px;">Dr. Elena Vance</div>
             <div style="color:#666; font-size:14px;">Founder & Chief Scientist</div>
+        </div>
+    </section>
+
+    <section class="concern-section">
+        <h2 class="hollow-heading">Shop By Concern</h2>
+        <div class="concern-grid">
+            <a href="/collections/hair-growth" class="concern-item">
+                <span class="concern-label">Hair Growth</span>
+            </a>
+            <a href="/collections/dandruff" class="concern-item">
+                <span class="concern-label">Dandruff</span>
+            </a>
+            <a href="/collections/damage-repair" class="concern-item">
+                <span class="concern-label">Damage Repair</span>
+            </a>
+            <a href="/collections/oil-control" class="concern-item">
+                <span class="concern-label">Oil Control</span>
+            </a>
         </div>
     </section>
 
