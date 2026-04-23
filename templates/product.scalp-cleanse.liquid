@@ -136,11 +136,19 @@
         border-radius: 12px;
         overflow: hidden;
     }
-    @media (max-width: 1024px) {
-        .community-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 480px) {
-        .community-grid { grid-template-columns: 1fr; }
+    @media (max-width: 768px) {
+        .community-grid { 
+            display: flex; 
+            overflow-x: auto; 
+            gap: 15px; 
+            padding-bottom: 20px; 
+            margin: 0 -5%; 
+            padding: 0 5%;
+            scroll-snap-type: x mandatory; 
+            scrollbar-width: none;
+        }
+        .community-grid::-webkit-scrollbar { display: none; }
+        .community-item { flex: 0 0 75%; scroll-snap-align: start; }
     }
 
     .faq-section {
