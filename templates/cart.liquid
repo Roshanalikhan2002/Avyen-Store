@@ -1,0 +1,148 @@
+{% comment %}
+  Avyen - Premium Cart Page Template
+{% endcomment %}
+
+<style>
+    :root {
+        --primary: #121212;
+        --secondary: #c9a227;
+        --background: #ffffff;
+        --text: #121212;
+        --font-serif: 'Playfair Display', serif;
+        --font-sans: 'Inter', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--background); }
+
+    header { 
+        display: flex; justify-content: space-between; align-items: center; 
+        padding: 20px 5%; border-bottom: 1px solid #eee; background: #fff;
+        position: sticky; top: 0; z-index: 1000;
+    }
+    .logo { 
+        font-family: var(--font-serif); font-size: 28px; font-weight: 700; 
+        color: var(--primary); text-decoration: none; letter-spacing: 4px;
+        position: absolute; left: 50%; transform: translateX(-50%);
+    }
+    nav a { text-decoration: none; color: #000; font-weight: 600; font-size: 13px; text-transform: uppercase; margin: 0 15px; }
+
+    .cart-container { max-width: 1200px; margin: 80px auto; padding: 0 5%; }
+    .cart-header { text-align: center; margin-bottom: 60px; }
+    .cart-header h1 { font-family: var(--font-serif); font-size: 48px; margin-bottom: 10px; }
+    
+    .cart-empty { text-align: center; padding: 100px 0; }
+    .cart-empty p { font-size: 18px; color: #666; margin-bottom: 30px; }
+    .shop-btn { 
+        display: inline-block; background: var(--primary); color: #fff; 
+        padding: 18px 45px; border-radius: 40px; text-decoration: none; 
+        font-weight: 700; text-transform: uppercase; font-size: 14px; letter-spacing: 2px;
+    }
+
+    .cart-table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
+    .cart-table th { text-align: left; padding: 20px 0; border-bottom: 2px solid #eee; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; color: #999; }
+    .cart-table td { padding: 30px 0; border-bottom: 1px solid #eee; }
+
+    .cart-product { display: flex; align-items: center; gap: 20px; }
+    .cart-product-img { width: 100px; height: 100px; border-radius: 8px; overflow: hidden; background: #f9f9f9; }
+    .cart-product-img img { width: 100%; height: 100%; object-fit: cover; }
+    .cart-product-info h3 { font-family: var(--font-serif); font-size: 20px; margin-bottom: 5px; }
+    .cart-product-info p { font-size: 14px; color: #666; }
+
+    .qty-control { display: flex; align-items: center; gap: 15px; border: 1px solid #eee; padding: 8px 15px; border-radius: 30px; width: fit-content; }
+    .qty-btn { background: none; border: none; cursor: pointer; font-size: 18px; color: #000; }
+    .qty-num { font-weight: 600; width: 20px; text-align: center; }
+
+    .cart-summary { background: #f9f9f9; padding: 40px; border-radius: 20px; margin-left: auto; max-width: 450px; }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 16px; }
+    .summary-total { border-top: 1px solid #ddd; padding-top: 20px; font-weight: 700; font-size: 22px; }
+    
+    .checkout-btn { 
+        display: block; width: 100%; background: var(--primary); color: #fff; 
+        padding: 20px; border-radius: 40px; text-decoration: none; text-align: center;
+        font-weight: 700; text-transform: uppercase; font-size: 15px; letter-spacing: 2px;
+        margin-top: 30px; transition: 0.3s;
+    }
+    .checkout-btn:hover { background: var(--secondary); color: #fff; }
+
+    @media (max-width: 768px) {
+        .cart-table thead { display: none; }
+        .cart-table tr { display: flex; flex-direction: column; gap: 15px; padding: 30px 0; }
+        .cart-table td { padding: 0; border: none; }
+        .cart-summary { max-width: 100%; }
+    }
+</style>
+
+<header>
+    <nav><a href="/collections/all">Shop</a></nav>
+    <a href="/" class="logo">AVYEN</a>
+</header>
+
+<main class="cart-container">
+    {% if cart.item_count > 0 %}
+        <div class="cart-header">
+            <h1>Your Ritual</h1>
+            <p>{{ cart.item_count }} items in your cart</p>
+        </div>
+
+        <form action="/cart" method="post" novalidate>
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart.items %}
+                        <tr>
+                            <td>
+                                <div class="cart-product">
+                                    <div class="cart-product-img">
+                                        <img src="{{ item | img_url: '200x200' }}" alt="{{ item.title }}">
+                                    </div>
+                                    <div class="cart-product-info">
+                                        <h3>{{ item.product.title }}</h3>
+                                        <a href="/cart/change?line={{ forloop.index }}&quantity=0" style="font-size:12px; color:#e74c3c;">Remove</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{ item.price | money }}</td>
+                            <td>
+                                <div class="qty-control">
+                                    <a href="/cart/change?line={{ forloop.index }}&quantity={{ item.quantity | minus: 1 }}" class="qty-btn">−</a>
+                                    <span class="qty-num">{{ item.quantity }}</span>
+                                    <a href="/cart/change?line={{ forloop.index }}&quantity={{ item.quantity | plus: 1 }}" class="qty-btn">+</a>
+                                </div>
+                            </td>
+                            <td>{{ item.line_price | money }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>{{ cart.total_price | money }}</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span>Calculated at checkout</span>
+                </div>
+                <div class="summary-row summary-total">
+                    <span>Total</span>
+                    <span>{{ cart.total_price | money }}</span>
+                </div>
+                <button type="submit" name="checkout" class="checkout-btn">Proceed to Checkout</button>
+            </div>
+        </form>
+    {% else %}
+        <div class="cart-empty">
+            <p>Your cart is currently empty.</p>
+            <a href="/collections/all" class="shop-btn">Start Shopping</a>
+        </div>
+    {% endif %}
+</main>
