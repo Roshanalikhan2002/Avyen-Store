@@ -73,6 +73,37 @@
         .expert-content { text-align: center; }
         .expert-image { width: 100%; height: 300px; }
     }
+
+    .benefits-section {
+        padding: 80px 5%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 60px;
+        max-width: 1300px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .benefit-item h3 {
+        font-family: var(--font-serif);
+        font-size: 28px;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        color: var(--primary);
+    }
+    .benefit-item p {
+        color: #555;
+        font-size: 15px;
+        line-height: 1.7;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+        .benefits-section {
+            grid-template-columns: 1fr;
+            gap: 50px;
+            padding: 60px 5%;
+        }
+    }
 </style>
 
 <div class="announcement-bar">Elevate Your Hair Ritual — Free Shipping On All Sets</div>
@@ -110,6 +141,21 @@
                 <p>Nourishing Conditioner</p>
                 <div class="price">Rs. 1,650</div>
             </a>
+        </div>
+    </section>
+
+    <section class="benefits-section">
+        <div class="benefit-item">
+            <h3>Botanical Scalp Care</h3>
+            <p>A powerful blend of premium organic extracts designed to purify the scalp and promote healthy hair growth naturally.</p>
+        </div>
+        <div class="benefit-item">
+            <h3>Instant Silk Finish</h3>
+            <p>Say goodbye to frizz and dryness with our fast-acting, moisture-locking formula that delivers immediate shine.</p>
+        </div>
+        <div class="benefit-item">
+            <h3>Gentle Daily Ritual</h3>
+            <p>No harsh sulfates or parabens. Just a pure yet effective formula that is safe for your daily hair care routine.</p>
         </div>
     </section>
 
