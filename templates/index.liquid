@@ -3,8 +3,6 @@
 {% endcomment %}
 
 <style>
-    @import url('https://fonts.cdnfonts.com/css/cassie-personal-use');
-
     :root {
         --primary: #121212;
         --secondary: #c9a227; /* Gold accent for premium feel */
@@ -150,7 +148,14 @@
     .cta-button:hover { background: var(--secondary); color: #000; }
 
     .section-container { padding: 100px 5%; text-align: center; }
-    .hollow-heading { font-family: 'Cassie Personal Use', 'Cassie', var(--font-serif); font-size: clamp(30px, 6vw, 60px); color: transparent; -webkit-text-stroke: 1px #000; text-transform: uppercase; margin-bottom: 50px; }
+    .hollow-heading {
+        font-family: "Segoe Script", "Brush Script MT", cursive !important;
+        font-size: clamp(30px, 6vw, 60px);
+        color: #000;
+        -webkit-text-stroke: 0;
+        text-transform: none;
+        margin-bottom: 50px;
+    }
 
     .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
     .product-item { text-decoration: none; color: #000; transition: 0.3s; }
