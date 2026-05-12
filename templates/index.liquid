@@ -148,6 +148,68 @@
     .cta-button { display: inline-block; background: #000; color: #fff; padding: 18px 45px; text-decoration: none; border-radius: 40px; font-weight: 700; text-transform: uppercase; font-size: 14px; letter-spacing: 2px; transition: 0.3s; position: relative; z-index: 3; }
     .cta-button:hover { background: var(--secondary); color: #000; }
 
+    .trust-badges {
+        background: #f7f4ef;
+        border-top: 1px solid rgba(61, 43, 43, 0.08);
+        border-bottom: 1px solid rgba(61, 43, 43, 0.08);
+    }
+    .trust-badges-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 36px 5%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 28px;
+        align-items: stretch;
+    }
+    .trust-badge {
+        font-family: var(--font-sans);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #3d2b2b;
+        line-height: 1.45;
+        padding: 18px 16px;
+        background: rgba(255,255,255,0.65);
+        border: 1px solid rgba(61, 43, 43, 0.1);
+        border-radius: 12px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 72px;
+    }
+    @media (max-width: 900px) {
+        .trust-badges-inner {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            padding: 28px 5%;
+        }
+    }
+    @media (max-width: 768px) {
+        .trust-badges-inner {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 14px;
+            padding: 24px 5% 28px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            overscroll-behavior-x: contain;
+        }
+        .trust-badges-inner::-webkit-scrollbar { display: none; }
+        .trust-badge {
+            flex: 0 0 min(88vw, 340px);
+            scroll-snap-align: center;
+            scroll-snap-stop: always;
+            min-height: 88px;
+            padding: 20px 18px;
+            font-size: 11px;
+        }
+    }
+
     .section-container { padding: 100px 5%; text-align: center; }
     .hollow-heading {
         font-family: "Segoe Script", "Brush Script MT", cursive !important;
@@ -437,6 +499,15 @@
 <main>
     <section class="hero">
         <!-- Text and buttons removed as per user request -->
+    </section>
+
+    <section class="trust-badges" aria-label="Why shop with Avyen">
+        <div class="trust-badges-inner">
+            <div class="trust-badge">Cash on Delivery Available</div>
+            <div class="trust-badge">Fast Delivery Across Pakistan</div>
+            <div class="trust-badge">Plant-Based &amp; Naturally Derived Ingredients</div>
+            <div class="trust-badge">Free from Harsh Sulfates, Parabens &amp; Synthetic Dyes</div>
+        </div>
     </section>
 
     <section class="section-container">
