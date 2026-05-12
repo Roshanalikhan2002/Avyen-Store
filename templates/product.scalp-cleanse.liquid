@@ -215,6 +215,28 @@
     .bundle-info h4 { font-size: 16px; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
     .bundle-info p { font-size: 13px; color: #777; }
     .bundle-price { font-weight: 700; font-size: 18px; }
+    .bundle-price-stack { text-align: right; }
+    .bundle-price-note {
+        font-size: 12px;
+        font-weight: 600;
+        color: #666;
+        margin-top: 6px;
+        line-height: 1.35;
+    }
+    .bundle-price-note strong { color: var(--secondary); font-weight: 700; }
+    .bundle-gift-tag {
+        display: inline-block;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--primary);
+        background: rgba(201, 162, 39, 0.2);
+        padding: 5px 10px;
+        border-radius: 6px;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
 
     .atc-btn { width: 100%; background: #000; color: #fff; padding: 22px; border: none; border-radius: 50px; font-weight: 700; font-size: 15px; text-transform: none; cursor: pointer; letter-spacing: 0.02em; transition: 0.3s; margin-bottom: 45px; }
     .atc-btn:hover { background: var(--secondary); color: #000; }
@@ -541,9 +563,12 @@
                 <div class="bundle-card">
                     <div class="bundle-info">
                         <h4>BOGO</h4>
-                        <p>Buy Scalp Cleanse, Get Avyen Conditioning Creme Free</p>
+                        <p><span class="bundle-gift-tag">Free Gift</span> Avyen Conditioning Creme — Worth <strong>Rs. 2,090</strong></p>
                     </div>
-                    <div class="bundle-price">Rs. 2,390</div>
+                    <div class="bundle-price-stack">
+                        <div class="bundle-price">Rs. 2,390</div>
+                        <div class="bundle-price-note">Free gift worth <strong>Rs. 2,090</strong></div>
+                    </div>
                 </div>
             </div>
 
