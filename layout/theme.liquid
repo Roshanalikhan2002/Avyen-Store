@@ -9,6 +9,9 @@
     {% if _req_path == '/pages/shipping-policy' or _req_path == '/pages/shipping-policy/' %}
     <meta http-equiv="refresh" content="0; url={{ shop.url }}/pages/shipping-delivery-policy">
     <script>window.location.replace({{ '/pages/shipping-delivery-policy' | json }});</script>
+    {% elsif _req_path == '/pages/refund-policy' or _req_path == '/pages/refund-policy/' %}
+    <meta http-equiv="refresh" content="0; url={{ shop.url }}/pages/return-refund-policy">
+    <script>window.location.replace({{ '/pages/return-refund-policy' | json }});</script>
     {% endif %}
     {{ content_for_header }}
 

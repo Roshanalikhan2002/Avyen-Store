@@ -1,9 +1,7 @@
 {% comment %}
-  Shipping & Delivery Policy — theme template
-  In Shopify Admin: Online Store > Pages > create/edit page > Theme template: shipping-policy
-  URL handle: use shipping-delivery-policy (from title) or edit SEO to shipping-policy — links in theme use shipping-delivery-policy
-  Page title (admin): Shipping & Delivery Policy
-  Page body can stay empty; copy lives in this template.
+  Terms & Conditions — theme template
+  Admin: Pages → Theme template: terms-conditions
+  Recommended URL handle: terms-conditions → /pages/terms-conditions
 {% endcomment %}
 
 <style>
@@ -145,32 +143,20 @@
 
 <main>
     <article class="policy-wrap">
-        <h1>{{ page.title | default: 'Shipping &amp; Delivery Policy' }}</h1>
-        <p class="policy-lead">At Avyen, we aim to deliver your haircare ritual safely and smoothly across Pakistan.</p>
+        <h1>{{ page.title | default: 'Terms &amp; Conditions' }}</h1>
+        <p class="policy-lead">By using the Avyen website and placing an order, you agree to our website terms, product usage guidance, and customer policies.</p>
 
         <section class="policy-section">
-            <h2>Delivery Time</h2>
-            <p>Orders are usually delivered within 3–5 working days, depending on your city and courier service availability.</p>
+            <h2>Product information</h2>
+            <p>Product information is provided for general haircare use only. Individual results may vary depending on hair type, routine, environment, and consistency.</p>
         </section>
         <section class="policy-section">
-            <h2>Delivery Areas</h2>
-            <p>We deliver across Pakistan.</p>
+            <h2>Safe use</h2>
+            <p>Avyen products are for external use only. Avoid contact with eyes. Discontinue use if irritation occurs.</p>
         </section>
         <section class="policy-section">
-            <h2>Delivery Charges</h2>
-            <p>Delivery charges, if any, will be shown at checkout. If free delivery is active during an offer, it will be clearly mentioned on the website.</p>
-        </section>
-        <section class="policy-section">
-            <h2>Cash on Delivery</h2>
-            <p>Cash on Delivery is available for eligible orders across Pakistan.</p>
-        </section>
-        <section class="policy-section">
-            <h2>Order Confirmation</h2>
-            <p>Our team may contact you via call or WhatsApp to confirm your order before dispatch.</p>
-        </section>
-        <section class="policy-section">
-            <h2>Delivery Issues</h2>
-            <p>If your parcel is delayed, damaged, or not received, please contact Avyen Care through WhatsApp or email at <a href="mailto:avyenofficial@gmail.com">avyenofficial@gmail.com</a>.</p>
+            <h2>Prices &amp; offers</h2>
+            <p>Prices, offers, and availability may change without prior notice. BOGO offers are valid only while stock lasts.</p>
         </section>
     </article>
 </main>
