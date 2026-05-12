@@ -456,6 +456,79 @@
         .concern-section { padding: 60px 0; }
         .concern-section .hollow-heading { padding: 0 5%; }
     }
+
+    .ingredients-section {
+        padding: 90px 5% 100px;
+        background: #faf8f5;
+        border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .ingredients-section__inner {
+        max-width: 960px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .ingredients-section__heading {
+        font-family: var(--font-serif);
+        font-size: clamp(28px, 5vw, 40px);
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 16px;
+        line-height: 1.2;
+    }
+    .ingredients-section__sub {
+        font-family: var(--font-sans);
+        font-size: clamp(15px, 2.5vw, 17px);
+        color: #666;
+        margin: 0 auto 48px;
+        max-width: 36rem;
+        line-height: 1.55;
+    }
+    .ingredients-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+        text-align: left;
+    }
+    .ingredients-card {
+        background: #fff;
+        border: 1px solid rgba(0,0,0,0.08);
+        border-radius: 16px;
+        padding: 32px 28px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+    }
+    .ingredients-card h3 {
+        font-family: var(--font-sans);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 16px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .ingredients-card p {
+        font-family: var(--font-sans);
+        font-size: 15px;
+        line-height: 1.75;
+        color: #444;
+        margin: 0;
+    }
+    .ingredients-section__safety {
+        font-family: var(--font-sans);
+        font-size: 14px;
+        color: #555;
+        margin: 44px auto 0;
+        padding-top: 36px;
+        border-top: 1px solid rgba(0,0,0,0.1);
+        max-width: 40rem;
+        line-height: 1.6;
+    }
+    @media (max-width: 768px) {
+        .ingredients-section { padding: 64px 5% 72px; }
+        .ingredients-grid { grid-template-columns: 1fr; gap: 20px; }
+        .ingredients-card { padding: 26px 22px; }
+    }
 </style>
 
 {% assign wa_digits = shop.phone | remove: '+' | remove: ' ' | remove: '-' | remove: '(' | remove: ')' %}
@@ -606,6 +679,24 @@
         <div class="benefit-item">
             <h3>Gentle Daily Ritual</h3>
             <p>No harsh sulfates or parabens. Just a pure yet effective formula that is safe for your daily hair care routine.</p>
+        </div>
+    </section>
+
+    <section class="ingredients-section" id="ingredients" aria-labelledby="ingredients-heading">
+        <div class="ingredients-section__inner">
+            <h2 class="ingredients-section__heading" id="ingredients-heading">Thoughtfully Selected Ingredients</h2>
+            <p class="ingredients-section__sub">Inspired by nature. Refined for everyday haircare.</p>
+            <div class="ingredients-grid">
+                <div class="ingredients-card">
+                    <h3>Scalp Cleanse Ingredients</h3>
+                    <p>Rice, Rosemary, Aloe Vera, Fenugreek, Hibiscus, Flaxseed Gel, Vitamin B5, Coconut Milk, Black Castor Oil, Lavender, Peppermint, Tea Tree.</p>
+                </div>
+                <div class="ingredients-card">
+                    <h3>Conditioning Creme Ingredients</h3>
+                    <p>Rosewater, Aloe Vera, Panthenol, Almond Oil, Castor Oil, Vitamin E, with plant-based conditioning agents.</p>
+                </div>
+            </div>
+            <p class="ingredients-section__safety">Free from harsh sulfates, parabens, and synthetic dyes.</p>
         </div>
     </section>
 
