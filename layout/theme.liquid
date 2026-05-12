@@ -4,6 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page_title }} - {{ shop.name }}</title>
+    {% comment %} Old / bookmarked URL: Shopify page handle is shipping-delivery-policy {% endcomment %}
+    {% assign _req_path = request.path | strip | downcase %}
+    {% if _req_path == '/pages/shipping-policy' or _req_path == '/pages/shipping-policy/' %}
+    <meta http-equiv="refresh" content="0; url={{ shop.url }}/pages/shipping-delivery-policy">
+    <script>window.location.replace({{ '/pages/shipping-delivery-policy' | json }});</script>
+    {% endif %}
     {{ content_for_header }}
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
