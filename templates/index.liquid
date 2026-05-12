@@ -178,10 +178,15 @@
     }
     .product-item:hover .product-btn { background: var(--secondary); color: #000; }
 
-    .expert-section { background: var(--accent-bg); padding: 100px 5%; display: flex; align-items: center; gap: 80px; max-width: 1400px; margin: 0 auto; }
-    .expert-content { flex: 1; text-align: left; }
-    .expert-quote { font-family: var(--font-serif); font-size: 32px; font-style: italic; margin-bottom: 30px; }
-    .expert-image { flex: 1; border-radius: 20px; overflow: hidden; height: 500px; background: #ddd; }
+    .bogo-strip {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin: -30px auto 40px;
+        max-width: 1200px;
+    }
 
     footer {
         background: var(--primary);
@@ -287,9 +292,6 @@
             background-image: url("{{ 'mobile-banner.jpg' | asset_url }}");
             height: 60vh;
         }
-        .expert-section { flex-direction: column; text-align: center; padding: 60px 5%; }
-        .expert-content { text-align: center; }
-        .expert-image { width: 100%; height: 300px; }
         .header-icon-account { display: none; }
     }
 
@@ -426,23 +428,24 @@
 
     <section class="section-container">
         <h2 class="hollow-heading">The Essentials</h2>
+        <p class="bogo-strip">BOGO: Buy Shampoo, Get Conditioner Free</p>
         <div class="products-grid">
             <a href="/products/scalp-cleanse" class="product-item">
                 <div class="product-item-img">
-                    <img src="{{ 'scalp-cleanse.jpg' | asset_url }}" alt="Scalp Cleanse">
+                    <img src="{{ 'scalp-cleanse.jpg' | asset_url }}" alt="Avyen Scalp Cleanse">
                 </div>
-                <h3>Scalp Cleanse</h3>
-                <p>Purifying Shampoo</p>
-                <div class="price">Rs. 1,450</div>
+                <h3>Avyen Scalp Cleanse</h3>
+                <p>Purifying scalp cleanse</p>
+                <div class="price">Rs. 2,390</div>
                 <div class="product-btn">Shop Now</div>
             </a>
             <a href="/products/conditioning-creme" class="product-item">
                 <div class="product-item-img">
-                    <img src="{{ 'conditioning-creme.jpg' | asset_url }}" alt="Conditioning Creme">
+                    <img src="{{ 'conditioning-creme.jpg' | asset_url }}" alt="Avyen Conditioning Creme">
                 </div>
-                <h3>Conditioning Creme</h3>
-                <p>Nourishing Conditioner</p>
-                <div class="price">Rs. 1,650</div>
+                <h3>Avyen Conditioning Creme</h3>
+                <p>Nourishing conditioning creme</p>
+                <div class="price">Rs. 2,090</div>
                 <div class="product-btn">Shop Now</div>
             </a>
         </div>
@@ -451,7 +454,7 @@
     <section class="benefits-section">
         <div class="benefit-item">
             <h3>Botanical Scalp Care</h3>
-            <p>A powerful blend of premium organic extracts designed to purify the scalp and promote healthy hair growth naturally.</p>
+            <p>A powerful blend of premium organic extracts designed to purify the scalp and leave hair feeling refreshed.</p>
         </div>
         <div class="benefit-item">
             <h3>Instant Silk Finish</h3>
@@ -460,17 +463,6 @@
         <div class="benefit-item">
             <h3>Gentle Daily Ritual</h3>
             <p>No harsh sulfates or parabens. Just a pure yet effective formula that is safe for your daily hair care routine.</p>
-        </div>
-    </section>
-
-    <section class="expert-section">
-        <div class="expert-image">
-             <img src="{{ 'expert-dr-elena.png' | asset_url }}" alt="Dr. Elena Vance" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <div class="expert-content">
-            <div class="expert-quote">"True hair health begins at the root. We've spent years perfecting a formula that balances scientific efficacy with the purity of nature."</div>
-            <div style="font-weight:700; text-transform:uppercase; letter-spacing:2px;">Dr. Elena Vance</div>
-            <div style="color:#666; font-size:14px;">Founder & Chief Scientist</div>
         </div>
     </section>
 
@@ -524,7 +516,7 @@
                 </form>
             </div>
         </div>
-        <div class="footer-bottom">&copy; 2024 AVYEN. All rights reserved.</div>
+        <div class="footer-bottom">&copy; {{ 'now' | date: '%Y' }} AVYEN. All rights reserved.</div>
     </footer>
     <script>
         function toggleMenu() {

@@ -428,28 +428,28 @@
     <section class="product-main">
         <div class="product-gallery">
             <div class="main-image">
-                <img src="{{ 'conditioning-creme.jpg' | asset_url }}" alt="Conditioning Creme">
+                <img src="{{ 'conditioning-creme.jpg' | asset_url }}" alt="Avyen Conditioning Creme">
             </div>
         </div>
         <div class="product-details">
-            <p class="subtitle">Nourishing Ritual</p>
-            <h1>Conditioning Creme</h1>
-            <div class="description">A luxurious, moisture-locking creme designed to restore hair elasticity and deliver a weightless silk finish. Infused with Shea Butter and Hydrolyzed Keratin, it seals the cuticle and protects against environmental stressors.</div>
+            <p class="subtitle">Nourishing conditioning creme</p>
+            <h1>Avyen Conditioning Creme</h1>
+            <div class="description">A luxurious, moisture-locking creme designed to restore elasticity and deliver a weightless silk finish. Infused with Shea Butter and Hydrolyzed Keratin to help smooth and soften hair.</div>
 
             <div class="bundle-selector">
                 <div class="bundle-card selected">
                     <div class="bundle-info">
                         <h4>Single Jar</h4>
-                        <p>250ml - Daily Hydration</p>
+                        <p>250ml — Avyen Conditioning Creme</p>
                     </div>
-                    <div class="bundle-price">Rs. 1,650</div>
+                    <div class="bundle-price">Rs. 2,090</div>
                 </div>
                 <div class="bundle-card">
                     <div class="bundle-info">
-                        <h4>The Duo Pack</h4>
-                        <p>2 Jars - Deep Therapy</p>
+                        <h4>BOGO</h4>
+                        <p>Complimentary with qualifying Avyen Scalp Cleanse purchase</p>
                     </div>
-                    <div class="bundle-price">Rs. 3,000</div>
+                    <div class="bundle-price">—</div>
                 </div>
             </div>
 
@@ -505,12 +505,12 @@
     <section class="feature-grid">
         <div class="feature-item">
              <div class="feature-image">
-                 <img src="{{ 'texture.jpeg' | asset_url }}" alt="Cuticle Repair" style="width:100%; height:100%; object-fit:cover;">
+                 <img src="{{ 'texture.jpeg' | asset_url }}" alt="Smoothing care" style="width:100%; height:100%; object-fit:cover;">
              </div>
         </div>
         <div class="feature-item">
-            <h2>Cuticle Repair</h2>
-            <p>Hydrolyzed Keratin fills in the gaps of damaged hair cuticles, smoothing the surface and preventing future breakage and split ends.</p>
+            <h2>Smoother-feeling hair</h2>
+            <p>Hydrolyzed Keratin and conditioning agents help improve comb-through and reduce the look of frizz for hair that feels softer and more manageable.</p>
         </div>
     </section>
 
@@ -530,8 +530,8 @@
                 <div class="faq-answer">Absolutely. Our formula is lightweight and won't leave your hair feeling greasy or flat if rinsed thoroughly.</div>
             </div>
             <div class="faq-item">
-                <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">Does it protect against heat? <span>+</span></button>
-                <div class="faq-answer">Yes, the keratin and argan oil blend provides a protective layer that helps shield hair from the drying effects of blow-drying and styling.</div>
+                <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">Can I use it before blow-drying? <span>+</span></button>
+                <div class="faq-answer">Yes. For heat styling, use your usual heat-protectant product as needed—this conditioner is not a substitute for a dedicated heat protectant.</div>
             </div>
         </div>
         <div class="faq-image">
@@ -614,7 +614,7 @@
             </form>
         </div>
     </div>
-    <div class="footer-bottom">&copy; 2024 AVYEN. All rights reserved.</div>
+    <div class="footer-bottom">&copy; {{ 'now' | date: '%Y' }} AVYEN. All rights reserved.</div>
 </footer>
 
 <script>
