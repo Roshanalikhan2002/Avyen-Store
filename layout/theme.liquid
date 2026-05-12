@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page_title }} - {{ shop.name }}</title>
+    <title>{% if template.name == 'index' %}AVYEN{% elsif page_title != blank %}{{ page_title }} | AVYEN{% else %}AVYEN{% endif %}</title>
     {% comment %} Old / bookmarked URL: Shopify page handle is shipping-delivery-policy {% endcomment %}
     {% assign _req_path = request.path | strip | downcase %}
     {% if _req_path == '/pages/shipping-policy' or _req_path == '/pages/shipping-policy/' %}
