@@ -149,83 +149,85 @@
     .cta-button:hover { background: var(--secondary); color: #000; }
 
     .trust-badges {
-        background: #f7f4ef;
-        border-top: 1px solid rgba(61, 43, 43, 0.08);
-        border-bottom: 1px solid rgba(61, 43, 43, 0.08);
+        --trust-ink: #3d332d;
+        background: #faf8f5;
+        border-top: 1px solid rgba(61, 43, 43, 0.07);
+        border-bottom: 1px solid rgba(61, 43, 43, 0.07);
     }
     .trust-badges-inner {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 36px 5%;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 28px;
+        padding: 0 5%;
+        display: flex;
+        flex-wrap: nowrap;
         align-items: stretch;
     }
     .trust-badge {
         font-family: var(--font-sans);
-        font-size: 13px;
+        font-size: 11px;
         font-weight: 600;
-        letter-spacing: 0.04em;
+        letter-spacing: 0.06em;
         text-transform: uppercase;
-        color: #3d2b2b;
-        line-height: 1.45;
-        padding: 20px 16px 22px;
-        background: rgba(255,255,255,0.65);
-        border: 1px solid rgba(61, 43, 43, 0.1);
-        border-radius: 12px;
+        color: var(--trust-ink);
+        line-height: 1.4;
+        padding: 28px 16px 32px;
         text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
         gap: 14px;
-        min-height: 160px;
+        flex: 1;
+        min-width: 0;
+        border-right: 1px solid rgba(61, 43, 43, 0.12);
+        background: transparent;
     }
-    .trust-badge__seal {
-        width: 72px;
-        height: 72px;
+    .trust-badge:last-child { border-right: none; }
+    .trust-badge__icon {
+        width: 52px;
+        height: 52px;
         flex-shrink: 0;
-        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
+        color: var(--trust-ink);
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    .trust-badge__seal svg {
-        width: 72px;
-        height: 72px;
+    .trust-badge__icon svg {
+        width: 48px;
+        height: 48px;
         display: block;
     }
     .trust-badge__text {
-        max-width: 22ch;
+        max-width: 24ch;
         margin: 0 auto;
-    }
-    @media (max-width: 900px) {
-        .trust-badges-inner {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            padding: 28px 5%;
-        }
+        opacity: 0.92;
     }
     @media (max-width: 768px) {
         .trust-badges-inner {
-            display: flex;
-            flex-wrap: nowrap;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
-            gap: 14px;
-            padding: 24px 5% 28px;
+            padding: 0 0 0 5%;
+            gap: 0;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
             overscroll-behavior-x: contain;
         }
         .trust-badges-inner::-webkit-scrollbar { display: none; }
         .trust-badge {
-            flex: 0 0 min(88vw, 340px);
+            flex: 0 0 min(78vw, 280px);
             scroll-snap-align: center;
             scroll-snap-stop: always;
-            min-height: 170px;
-            padding: 22px 18px 24px;
-            font-size: 11px;
+            padding: 26px 20px 30px;
+            border-right: 1px solid rgba(61, 43, 43, 0.12);
+            font-size: 10px;
         }
-        .trust-badge__text { max-width: 28ch; }
+        .trust-badge:last-child { border-right: 1px solid rgba(61, 43, 43, 0.12); padding-right: 5%; }
+        .trust-badges-inner::after {
+            content: '';
+            flex: 0 0 5%;
+            min-width: 5%;
+        }
+        .trust-badge__text { max-width: 32ch; }
     }
 
     .section-container { padding: 100px 5%; text-align: center; }
@@ -522,75 +524,41 @@
     <section class="trust-badges" aria-label="Why shop with Avyen">
         <div class="trust-badges-inner">
             <div class="trust-badge">
-                <div class="trust-badge__seal" aria-hidden="true">
-                    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img">
-                        <defs>
-                            <linearGradient id="sealGold1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#f0d78c"/><stop offset="45%" stop-color="#fff8e7"/><stop offset="100%" stop-color="#c9a227"/>
-                            </linearGradient>
-                        </defs>
-                        <path fill="url(#sealGold1)" stroke="#a67c00" stroke-width="1.2" d="M40 2l4.2 9.6 10.4-3.3-2.1 10.7 9.1 6.2-8.3 6.8 2.4 10.6-10.5-1.5L40 52l-9.2 7.2-10.5 1.5 2.4-10.6-8.3-6.8 9.1-6.2-2.1-10.7 10.4 3.3z"/>
-                        <path fill="#c41e3a" d="M12 48h56v10c-9.3 4-17.4 6-28 6s-18.7-2-28-6V48z"/>
-                        <rect x="27" y="30" width="26" height="17" rx="3" fill="#1a2744"/>
-                        <path d="M27 33h26v3H27z" fill="#fff8e7" opacity=".28"/>
-                        <path d="M36 24h8v9h-8z" fill="#c41e3a"/>
-                        <circle cx="34" cy="17" r="1.4" fill="#1a2744"/><circle cx="40" cy="15" r="1.4" fill="#1a2744"/><circle cx="46" cy="17" r="1.4" fill="#1a2744"/>
+                <div class="trust-badge__icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="11" y="13" width="26" height="20" rx="2.5"/>
+                        <line x1="15" y1="19" x2="29" y2="19"/>
+                        <circle cx="34.5" cy="30.5" r="5.5"/>
+                        <path d="M32 30.5l1.6 1.6 3.8-4.3"/>
                     </svg>
                 </div>
                 <span class="trust-badge__text">Cash on Delivery Available</span>
             </div>
             <div class="trust-badge">
-                <div class="trust-badge__seal" aria-hidden="true">
-                    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img">
-                        <defs>
-                            <linearGradient id="sealGold2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#f0d78c"/><stop offset="45%" stop-color="#fff8e7"/><stop offset="100%" stop-color="#c9a227"/>
-                            </linearGradient>
-                        </defs>
-                        <path fill="url(#sealGold2)" stroke="#a67c00" stroke-width="1.2" d="M40 2l4.2 9.6 10.4-3.3-2.1 10.7 9.1 6.2-8.3 6.8 2.4 10.6-10.5-1.5L40 52l-9.2 7.2-10.5 1.5 2.4-10.6-8.3-6.8 9.1-6.2-2.1-10.7 10.4 3.3z"/>
-                        <path fill="#c41e3a" d="M12 48h56v10c-9.3 4-17.4 6-28 6s-18.7-2-28-6V48z"/>
-                        <path fill="#1a2744" d="M18 36h32v9H18zm32 0h12l5 5v4H50z"/>
-                        <circle cx="26" cy="47" r="3" fill="#fff8e7" stroke="#1a2744" stroke-width="1.2"/>
-                        <circle cx="48" cy="47" r="3" fill="#fff8e7" stroke="#1a2744" stroke-width="1.2"/>
-                        <circle cx="34" cy="17" r="1.4" fill="#1a2744"/><circle cx="40" cy="15" r="1.4" fill="#1a2744"/><circle cx="46" cy="17" r="1.4" fill="#1a2744"/>
+                <div class="trust-badge__icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10 26h19v9H10z"/>
+                        <path d="M29 26V17h7.5l5.5 5.5V26H29"/>
+                        <circle cx="15.5" cy="37" r="3"/>
+                        <circle cx="26.5" cy="37" r="3"/>
                     </svg>
                 </div>
                 <span class="trust-badge__text">Fast Delivery Across Pakistan</span>
             </div>
             <div class="trust-badge">
-                <div class="trust-badge__seal" aria-hidden="true">
-                    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img">
-                        <defs>
-                            <linearGradient id="sealGold3" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#f0d78c"/><stop offset="45%" stop-color="#fff8e7"/><stop offset="100%" stop-color="#c9a227"/>
-                            </linearGradient>
-                            <linearGradient id="leafGr" x1="0%" y1="100%" x2="100%" y2="0%">
-                                <stop offset="0%" stop-color="#1a2744"/><stop offset="100%" stop-color="#2d5016"/>
-                            </linearGradient>
-                        </defs>
-                        <path fill="url(#sealGold3)" stroke="#a67c00" stroke-width="1.2" d="M40 2l4.2 9.6 10.4-3.3-2.1 10.7 9.1 6.2-8.3 6.8 2.4 10.6-10.5-1.5L40 52l-9.2 7.2-10.5 1.5 2.4-10.6-8.3-6.8 9.1-6.2-2.1-10.7 10.4 3.3z"/>
-                        <path fill="#c41e3a" d="M12 48h56v10c-9.3 4-17.4 6-28 6s-18.7-2-28-6V48z"/>
-                        <path fill="url(#leafGr)" d="M40 18c-8 10-12 22-10 32 2-8 8-14 14-16-6-4-4-12-4-16z"/>
-                        <path fill="#4a7c23" d="M40 18c8 8 12 18 10 28-4-6-10-10-16-11 8-5 6-13 6-17z" opacity=".85"/>
-                        <path fill="none" stroke="#fff8e7" stroke-width="1" d="M40 22v18" opacity=".5"/>
-                        <circle cx="34" cy="17" r="1.4" fill="#1a2744"/><circle cx="40" cy="15" r="1.4" fill="#1a2744"/><circle cx="46" cy="17" r="1.4" fill="#1a2744"/>
+                <div class="trust-badge__icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M24 11 Q14 20 17 30 Q19 36 24 38 Q29 36 31 30 Q34 20 24 11 Z"/>
+                        <path d="M24 14v22"/>
                     </svg>
                 </div>
                 <span class="trust-badge__text">Plant-Based &amp; Naturally Derived Ingredients</span>
             </div>
             <div class="trust-badge">
-                <div class="trust-badge__seal" aria-hidden="true">
-                    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img">
-                        <defs>
-                            <linearGradient id="sealGold4" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#f0d78c"/><stop offset="45%" stop-color="#fff8e7"/><stop offset="100%" stop-color="#c9a227"/>
-                            </linearGradient>
-                        </defs>
-                        <path fill="url(#sealGold4)" stroke="#a67c00" stroke-width="1.2" d="M40 2l4.2 9.6 10.4-3.3-2.1 10.7 9.1 6.2-8.3 6.8 2.4 10.6-10.5-1.5L40 52l-9.2 7.2-10.5 1.5 2.4-10.6-8.3-6.8 9.1-6.2-2.1-10.7 10.4 3.3z"/>
-                        <path fill="#c41e3a" d="M12 48h56v10c-9.3 4-17.4 6-28 6s-18.7-2-28-6V48z"/>
-                        <path fill="#1a2744" d="M40 26 L48 31 V42 Q48 49 40 52 Q32 49 32 42 V31 Z"/>
-                        <path fill="none" stroke="#fff8e7" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M35 37l5 5 10-10"/>
-                        <circle cx="34" cy="17" r="1.4" fill="#1a2744"/><circle cx="40" cy="15" r="1.4" fill="#1a2744"/><circle cx="46" cy="17" r="1.4" fill="#1a2744"/>
+                <div class="trust-badge__icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M24 10c-8 10-11 19-5 25 5 5 13 4 16-2 3-8-3-17-11-23z"/>
+                        <path d="M19 23l4 4 8-9"/>
                     </svg>
                 </div>
                 <span class="trust-badge__text">Free from Harsh Sulfates, Parabens &amp; Synthetic Dyes</span>
