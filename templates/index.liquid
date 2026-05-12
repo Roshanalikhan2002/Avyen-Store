@@ -154,85 +154,91 @@
     .cta-button:hover { background: var(--secondary); color: #000; }
 
     .trust-badges {
-        --trust-ink: #3d332d;
-        background: #faf8f5;
-        border-top: 1px solid rgba(61, 43, 43, 0.07);
-        border-bottom: 1px solid rgba(61, 43, 43, 0.07);
+        --trust-ink: #2c2825;
+        --trust-muted: #5c5652;
+        background: linear-gradient(180deg, #fdfcfa 0%, #f5f1eb 100%);
+        border-top: 1px solid rgba(44, 40, 37, 0.06);
+        border-bottom: 1px solid rgba(44, 40, 37, 0.06);
+        padding: 44px 5% 48px;
     }
     .trust-badges-inner {
-        max-width: 1200px;
+        max-width: 1120px;
         margin: 0 auto;
-        padding: 0 5%;
-        display: flex;
-        flex-wrap: nowrap;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
         align-items: stretch;
     }
     .trust-badge {
         font-family: var(--font-sans);
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        text-transform: none;
         color: var(--trust-ink);
-        line-height: 1.4;
-        padding: 28px 16px 32px;
+        line-height: 1.45;
+        padding: 26px 18px 28px;
         text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        gap: 14px;
-        flex: 1;
+        gap: 16px;
         min-width: 0;
-        border-right: 1px solid rgba(61, 43, 43, 0.12);
-        background: transparent;
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-radius: 16px;
+        border: 1px solid rgba(44, 40, 37, 0.06);
+        box-shadow:
+            0 1px 2px rgba(44, 40, 37, 0.04),
+            0 12px 40px rgba(44, 40, 37, 0.06);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
-    .trust-badge:last-child { border-right: none; }
+    .trust-badge:hover {
+        transform: translateY(-2px);
+        border-color: rgba(201, 162, 39, 0.35);
+        box-shadow:
+            0 2px 4px rgba(44, 40, 37, 0.05),
+            0 16px 48px rgba(44, 40, 37, 0.08);
+    }
     .trust-badge__icon {
-        width: 52px;
-        height: 52px;
+        width: 56px;
+        height: 56px;
         flex-shrink: 0;
-        color: var(--trust-ink);
+        color: var(--primary);
         display: flex;
         align-items: center;
         justify-content: center;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.9) 0%, rgba(201, 162, 39, 0.14) 55%, rgba(201, 162, 39, 0.08) 100%);
+        border: 1px solid rgba(201, 162, 39, 0.22);
     }
     .trust-badge__icon svg {
-        width: 48px;
-        height: 48px;
+        width: 26px;
+        height: 26px;
         display: block;
+        stroke-width: 1.85;
     }
     .trust-badge__text {
-        max-width: 24ch;
+        max-width: 15rem;
         margin: 0 auto;
-        opacity: 0.92;
+        color: var(--trust-muted);
+        font-weight: 500;
     }
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
         .trust-badges-inner {
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            padding: 0 0 0 5%;
-            gap: 0;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            overscroll-behavior-x: contain;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
         }
-        .trust-badges-inner::-webkit-scrollbar { display: none; }
-        .trust-badge {
-            flex: 0 0 min(78vw, 280px);
-            scroll-snap-align: center;
-            scroll-snap-stop: always;
-            padding: 26px 20px 30px;
-            border-right: 1px solid rgba(61, 43, 43, 0.12);
-            font-size: 10px;
-        }
-        .trust-badge:last-child { border-right: 1px solid rgba(61, 43, 43, 0.12); padding-right: 5%; }
-        .trust-badges-inner::after {
-            content: '';
-            flex: 0 0 5%;
-            min-width: 5%;
-        }
-        .trust-badge__text { max-width: 32ch; }
+        .trust-badges { padding: 36px 5% 40px; }
+        .trust-badge { padding: 22px 14px 24px; font-size: 13px; }
+    }
+    @media (max-width: 420px) {
+        .trust-badges-inner { gap: 12px; }
+        .trust-badge { padding: 20px 12px; font-size: 12.5px; }
+        .trust-badge__icon { width: 50px; height: 50px; }
+        .trust-badge__icon svg { width: 24px; height: 24px; }
     }
 
     .section-container { padding: 100px 5%; text-align: center; }
