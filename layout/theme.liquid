@@ -77,6 +77,24 @@
         }
         .gcd-item-remove:hover { color: #e74c3c; }
 
+        .gcd-item--gift {
+            background: #faf8f5;
+            margin: 0 -8px;
+            padding: 18px 8px;
+            border-radius: 10px;
+            border-bottom: 1px solid #ece8e2 !important;
+        }
+        .gcd-gift-badge {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--cart-secondary);
+            display: block;
+            margin-bottom: 6px;
+        }
+        .gcd-price-free { color: #1b5e20; font-weight: 700; }
+
         .gcd-footer { padding: 20px 30px; border-top: 1px solid var(--cart-border); }
         .gcd-subtotal {
             display: flex; justify-content: space-between;
@@ -227,6 +245,16 @@
         const cart = await r.json();
         gRenderCart(cart);
     }
+    function gIsGiftLine(item) {
+        const p = item.properties;
+        return p && (p['Free gift'] != null || p['_gift'] != null);
+    }
+    function gLinePriceDisplay(item) {
+        const final = item.final_line_price != null ? item.final_line_price : (item.line_price != null ? item.line_price : (item.price * item.quantity));
+        const gift = gIsGiftLine(item);
+        if (gift && final === 0) return '<span class="gcd-price-free">FREE</span>';
+        return gFormatMoney(final);
+    }
     function gRenderCart(cart) {
         const items = document.getElementById('gcdItems');
         const footer = document.getElementById('gcdFooter');
@@ -239,21 +267,28 @@
         }
         footer.style.display = 'block';
         total.textContent = gFormatMoney(cart.total_price);
-        items.innerHTML = cart.items.map((item, idx) => `
-            <div class="gcd-item">
-                <div class="gcd-item-img"><img src="${item.image}" alt="${item.title}"></div>
-                <div class="gcd-item-info">
-                    <div class="gcd-item-title">${item.product_title}</div>
-                    <div class="gcd-item-price">${gFormatMoney(item.price)}</div>
-                    <div class="gcd-item-qty">
-                        <button class="gcd-qty-btn" onclick="gChangeQty(${idx + 1}, ${item.quantity - 1})">−</button>
+        items.innerHTML = cart.items.map((item, idx) => {
+            const gift = gIsGiftLine(item);
+            const title = (item.product_title || '') + (item.variant_title && item.variant_title !== 'Default Title' ? ' — ' + item.variant_title : '');
+            const qtyControls = gift
+                ? `<div class="gcd-item-qty"><span class="gcd-qty-num">${item.quantity}</span><span style="font-size:12px;color:#888;margin-left:8px;">Free gift</span></div>`
+                : `<div class="gcd-item-qty">
+                        <button type="button" class="gcd-qty-btn" onclick="gChangeQty(${idx + 1}, ${item.quantity - 1})">−</button>
                         <span class="gcd-qty-num">${item.quantity}</span>
-                        <button class="gcd-qty-btn" onclick="gChangeQty(${idx + 1}, ${item.quantity + 1})">+</button>
-                    </div>
+                        <button type="button" class="gcd-qty-btn" onclick="gChangeQty(${idx + 1}, ${item.quantity + 1})">+</button>
+                   </div>`;
+            return `
+            <div class="gcd-item${gift ? ' gcd-item--gift' : ''}">
+                <div class="gcd-item-img"><img src="${item.image}" alt="${(item.product_title || '').replace(/"/g, '')}"></div>
+                <div class="gcd-item-info">
+                    ${gift ? '<span class="gcd-gift-badge">Free Gift</span>' : ''}
+                    <div class="gcd-item-title">${title}</div>
+                    <div class="gcd-item-price">${gLinePriceDisplay(item)}</div>
+                    ${qtyControls}
                 </div>
-                <button class="gcd-item-remove" onclick="gChangeQty(${idx + 1}, 0)">×</button>
-            </div>
-        `).join('');
+                <button type="button" class="gcd-item-remove" onclick="gChangeQty(${idx + 1}, 0)" aria-label="Remove">×</button>
+            </div>`;
+        }).join('');
     }
     async function gChangeQty(line, qty) {
         await fetch('/cart/change.js', {
@@ -264,15 +299,50 @@
         gFetchCart();
     }
     async function gAddToCart(id, btn, qty = 1) {
+        const orig = btn && (btn.dataset.atcLabel || (btn.dataset.atcLabel = btn.textContent.trim()));
         if (btn) { btn.textContent = 'ADDING...'; btn.disabled = true; }
-        await fetch('/cart/add.js', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id, quantity: qty })
-        });
-        if (btn) { btn.textContent = '✓ ADDED!'; setTimeout(() => { btn.textContent = 'ADD TO CART'; btn.disabled = false; }, 2000); }
-        gShowToast();
-        gOpenCart();
+        try {
+            const res = await fetch('/cart/add.js', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: Number(id), quantity: qty })
+            });
+            if (!res.ok) throw new Error(await res.text());
+            if (btn) { btn.textContent = '✓ ADDED!'; setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 2000); }
+            gShowToast();
+            gOpenCart();
+        } catch (e) {
+            alert('Could not add to cart. Please try again.');
+            if (btn) { btn.textContent = orig; btn.disabled = false; }
+        }
+    }
+    /** Adds Scalp Cleanse + Conditioning Creme (mark gift line). Set a Shopify automatic discount so the gift line prices at Rs. 0 at checkout. */
+    async function gAddToCartWithGift(mainVariantId, giftVariantId, btn, qty = 1) {
+        const orig = btn && (btn.dataset.atcLabel || (btn.dataset.atcLabel = btn.textContent.trim()));
+        if (btn) { btn.textContent = 'ADDING...'; btn.disabled = true; }
+        try {
+            const res = await fetch('/cart/add.js', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    items: [
+                        { id: Number(mainVariantId), quantity: qty },
+                        {
+                            id: Number(giftVariantId),
+                            quantity: qty,
+                            properties: { 'Free gift': 'BOGO — Avyen Conditioning Creme (worth Rs. 2,090)' }
+                        }
+                    ]
+                })
+            });
+            if (!res.ok) throw new Error(await res.text());
+            if (btn) { btn.textContent = '✓ ADDED!'; setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 2000); }
+            gShowToast();
+            gOpenCart();
+        } catch (e) {
+            alert('Could not add to cart. Please try again.');
+            if (btn) { btn.textContent = orig; btn.disabled = false; }
+        }
     }
     function gOpenSearch() {
         document.getElementById('gSearchOverlay').classList.add('active');
