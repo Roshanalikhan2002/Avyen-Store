@@ -381,35 +381,204 @@
         .header-icon-account { display: none; }
     }
 
-    .benefits-section {
-        padding: 80px 5%;
+    .how-it-works {
+        padding: 90px 5% 100px;
+        background: #fff;
+        border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .how-it-works__inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .how-it-works__heading {
+        font-family: var(--font-serif);
+        font-size: clamp(28px, 5vw, 42px);
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 48px;
+        line-height: 1.2;
+    }
+    .how-it-works__steps {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 60px;
+        gap: 36px;
+        text-align: left;
+    }
+    .how-step {
+        padding: 28px 24px;
+        border-radius: 16px;
+        border: 1px solid rgba(0,0,0,0.08);
+        background: #fafafa;
+    }
+    .how-step__num {
+        font-family: var(--font-sans);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--secondary);
+        margin-bottom: 12px;
+    }
+    .how-step__title {
+        font-family: var(--font-serif);
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 14px;
+        line-height: 1.25;
+    }
+    .how-step p {
+        font-size: 15px;
+        line-height: 1.7;
+        color: #555;
+        margin: 0;
+    }
+    @media (max-width: 900px) {
+        .how-it-works__steps { grid-template-columns: 1fr; gap: 24px; }
+        .how-it-works { padding: 64px 5% 72px; }
+    }
+
+    .benefits-section {
+        padding: 80px 5%;
         max-width: 1300px;
         margin: 0 auto;
         text-align: center;
     }
+    .benefits-section__heading {
+        font-family: var(--font-serif);
+        font-size: clamp(28px, 5vw, 40px);
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 52px;
+        line-height: 1.2;
+    }
+    .benefits-section__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px 32px;
+    }
     .benefit-item h3 {
         font-family: var(--font-serif);
-        font-size: 28px;
-        margin-bottom: 20px;
-        line-height: 1.2;
+        font-size: 22px;
+        margin-bottom: 16px;
+        line-height: 1.25;
         color: var(--primary);
     }
     .benefit-item p {
         color: #555;
         font-size: 15px;
         line-height: 1.7;
-        max-width: 300px;
+        max-width: 280px;
         margin: 0 auto;
+    }
+    @media (max-width: 1024px) {
+        .benefits-section__grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
         .benefits-section {
-            grid-template-columns: 1fr;
-            gap: 50px;
             padding: 60px 5%;
         }
+        .benefits-section__grid {
+            grid-template-columns: 1fr;
+            gap: 44px;
+        }
+    }
+
+    .social-proof-section {
+        padding: 80px 5%;
+        background: #faf8f5;
+        border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .social-proof-section__inner {
+        max-width: 640px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .social-proof-section__heading {
+        font-family: var(--font-serif);
+        font-size: clamp(26px, 4vw, 34px);
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 28px;
+        line-height: 1.2;
+    }
+    .social-proof-section blockquote {
+        font-family: var(--font-sans);
+        font-size: clamp(17px, 2.5vw, 19px);
+        line-height: 1.65;
+        color: #444;
+        font-style: italic;
+        margin: 0 0 20px;
+    }
+    .social-proof-section cite {
+        font-family: var(--font-sans);
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #666;
+    }
+
+    .faq-section {
+        padding: 90px 5% 100px;
+        background: #fff;
+        border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .faq-section__inner {
+        max-width: 720px;
+        margin: 0 auto;
+    }
+    .faq-section__heading {
+        font-family: var(--font-serif);
+        font-size: clamp(28px, 5vw, 38px);
+        font-weight: 700;
+        color: var(--primary);
+        text-align: center;
+        margin-bottom: 40px;
+        line-height: 1.2;
+    }
+    .faq-list details {
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .faq-list details:first-of-type {
+        border-top: 1px solid rgba(0,0,0,0.1);
+    }
+    .faq-list summary {
+        font-family: var(--font-sans);
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--primary);
+        padding: 20px 8px 20px 0;
+        cursor: pointer;
+        list-style: none;
+        position: relative;
+        padding-right: 36px;
+        line-height: 1.45;
+    }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after {
+        content: '+';
+        position: absolute;
+        right: 4px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 22px;
+        font-weight: 400;
+        color: var(--secondary);
+        line-height: 1;
+    }
+    .faq-list details[open] summary::after { content: '−'; }
+    .faq-list .faq-a {
+        font-size: 15px;
+        line-height: 1.7;
+        color: #555;
+        padding: 0 8px 22px 0;
+        margin-top: -4px;
+    }
+    @media (max-width: 768px) {
+        .faq-section { padding: 64px 5% 72px; }
     }
 
     .concern-section {
@@ -532,6 +701,9 @@
 </style>
 
 {% assign wa_digits = shop.phone | remove: '+' | remove: ' ' | remove: '-' | remove: '(' | remove: ')' %}
+{% comment %} Homepage testimonial: set Shop metafield custom.homepage_review_quote when you have an approved real review. Optional custom.homepage_review_byline (defaults to Verified Customer). Section hidden if quote is empty. {% endcomment %}
+{% assign homepage_review_quote = shop.metafields.custom.homepage_review_quote %}
+{% assign homepage_review_byline = shop.metafields.custom.homepage_review_byline %}
 
 <div class="announcement-bar">Limited-Time BOGO Offer — Buy Scalp Cleanse &amp; Get Conditioning Creme FREE</div>
 
@@ -667,18 +839,48 @@
         </div>
     </section>
 
-    <section class="benefits-section">
-        <div class="benefit-item">
-            <h3>Botanical Scalp Care</h3>
-            <p>A powerful blend of premium organic extracts designed to purify the scalp and leave hair feeling refreshed.</p>
+    <section class="how-it-works" id="how-it-works" aria-labelledby="how-it-works-heading">
+        <div class="how-it-works__inner">
+            <h2 class="how-it-works__heading" id="how-it-works-heading">A Simple Ritual for Soft, Balanced Hair</h2>
+            <div class="how-it-works__steps">
+                <div class="how-step">
+                    <div class="how-step__num">Step 1</div>
+                    <h3 class="how-step__title">Cleanse</h3>
+                    <p>Apply Avyen Scalp Cleanse to wet hair and scalp. Massage gently and leave for 1–2 minutes. Rinse thoroughly.</p>
+                </div>
+                <div class="how-step">
+                    <div class="how-step__num">Step 2</div>
+                    <h3 class="how-step__title">Condition</h3>
+                    <p>After shampooing, apply Avyen Conditioning Creme to clean, wet hair. Focus on mid-lengths and ends.</p>
+                </div>
+                <div class="how-step">
+                    <div class="how-step__num">Step 3</div>
+                    <h3 class="how-step__title">Soften &amp; Smooth</h3>
+                    <p>Leave for 3–5 minutes, then rinse thoroughly for a soft, smooth, effortless finish.</p>
+                </div>
+            </div>
         </div>
-        <div class="benefit-item">
-            <h3>Instant Silk Finish</h3>
-            <p>Say goodbye to frizz and dryness with our fast-acting, moisture-locking formula that delivers immediate shine.</p>
-        </div>
-        <div class="benefit-item">
-            <h3>Gentle Daily Ritual</h3>
-            <p>No harsh sulfates or parabens. Just a pure yet effective formula that is safe for your daily hair care routine.</p>
+    </section>
+
+    <section class="benefits-section" aria-labelledby="benefits-heading">
+        <h2 class="benefits-section__heading" id="benefits-heading">Designed for Everyday Elegance</h2>
+        <div class="benefits-section__grid">
+            <div class="benefit-item">
+                <h3>Gentle Scalp Cleansing</h3>
+                <p>Cleanses hair and scalp without a harsh stripped feeling.</p>
+            </div>
+            <div class="benefit-item">
+                <h3>Soft, Smooth Finish</h3>
+                <p>Helps reduce dryness and roughness for hair that feels more manageable.</p>
+            </div>
+            <div class="benefit-item">
+                <h3>Balanced Hair Ritual</h3>
+                <p>Supports a clean, refreshed, and naturally balanced haircare routine.</p>
+            </div>
+            <div class="benefit-item">
+                <h3>Refined Natural Shine</h3>
+                <p>Leaves hair feeling fresh, soft, and naturally cared for.</p>
+            </div>
         </div>
     </section>
 
@@ -697,6 +899,54 @@
                 </div>
             </div>
             <p class="ingredients-section__safety">Free from harsh sulfates, parabens, and synthetic dyes.</p>
+        </div>
+    </section>
+
+    {% if homepage_review_quote != blank %}
+    <section class="social-proof-section" aria-labelledby="social-proof-heading">
+        <div class="social-proof-section__inner">
+            <h2 class="social-proof-section__heading" id="social-proof-heading">Loved by Our Early Avyen Community</h2>
+            <blockquote>
+                <p>{{ homepage_review_quote }}</p>
+            </blockquote>
+            <cite>— {% if homepage_review_byline != blank %}{{ homepage_review_byline }}{% else %}Verified Customer{% endif %}</cite>
+        </div>
+    </section>
+    {% endif %}
+
+    <section class="faq-section" id="faq" aria-labelledby="faq-heading">
+        <div class="faq-section__inner">
+            <h2 class="faq-section__heading" id="faq-heading">Questions Before You Begin the Ritual?</h2>
+            <div class="faq-list">
+                <details>
+                    <summary>What is the current Avyen offer?</summary>
+                    <div class="faq-a">Buy Avyen Scalp Cleanse for Rs.2,390 and get Avyen Conditioning Creme worth Rs.2,090 free.</div>
+                </details>
+                <details>
+                    <summary>Is Avyen suitable for all hair types?</summary>
+                    <div class="faq-a">Yes, both products are suitable for all hair types.</div>
+                </details>
+                <details>
+                    <summary>How often should I use Scalp Cleanse?</summary>
+                    <div class="faq-a">Use 2–3 times weekly, or as suitable for your hair routine.</div>
+                </details>
+                <details>
+                    <summary>How should I use Conditioning Creme?</summary>
+                    <div class="faq-a">After shampooing, apply to clean wet hair, focusing on mid-lengths and ends. Leave for 3–5 minutes, then rinse thoroughly.</div>
+                </details>
+                <details>
+                    <summary>Is it free from harsh ingredients?</summary>
+                    <div class="faq-a">Yes, Avyen is formulated with plant-based and naturally derived ingredients and is free from harsh sulfates, parabens, and synthetic dyes.</div>
+                </details>
+                <details>
+                    <summary>Do you offer Cash on Delivery?</summary>
+                    <div class="faq-a">Yes, Cash on Delivery is available across Pakistan.</div>
+                </details>
+                <details>
+                    <summary>How can I order?</summary>
+                    <div class="faq-a">You can order directly through the website or message us on WhatsApp.</div>
+                </details>
+            </div>
         </div>
     </section>
 
