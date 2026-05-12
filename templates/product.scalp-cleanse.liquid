@@ -134,8 +134,76 @@
 
     .product-details { flex: 1; }
     .product-details h1 { font-family: var(--font-serif); font-size: 48px; color: var(--primary); line-height: 1.1; margin-bottom: 10px; }
-    .subtitle { font-size: 16px; color: var(--secondary); margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
-    .description { font-size: 16px; color: #444; margin-bottom: 35px; max-width: 500px; line-height: 1.8; }
+    .subtitle { font-size: 14px; color: var(--secondary); margin-bottom: 12px; text-transform: none; letter-spacing: 0.08em; font-weight: 700; }
+    .offer-badge {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--primary);
+        background: rgba(201, 162, 39, 0.14);
+        border: 1px solid rgba(201, 162, 39, 0.4);
+        padding: 11px 16px;
+        border-radius: 10px;
+        margin-bottom: 22px;
+        max-width: 520px;
+        line-height: 1.45;
+    }
+    .description { font-size: 16px; color: #444; margin-bottom: 28px; max-width: 520px; line-height: 1.8; }
+    .key-benefits { margin-bottom: 32px; text-align: left; max-width: 520px; }
+    .key-benefits h3 {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 16px;
+    }
+    .key-benefits ul { list-style: none; padding: 0; margin: 0; }
+    .key-benefits li {
+        position: relative;
+        padding-left: 22px;
+        margin-bottom: 12px;
+        font-size: 15px;
+        color: #444;
+        line-height: 1.55;
+    }
+    .key-benefits li:last-child { margin-bottom: 0; }
+    .key-benefits li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.55em;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--secondary);
+    }
+
+    .result-section {
+        padding: 72px 5% 80px;
+        background: #faf8f5;
+        border-top: 1px solid rgba(0,0,0,0.06);
+        text-align: center;
+    }
+    .result-section__inner {
+        max-width: 640px;
+        margin: 0 auto;
+    }
+    .result-section h2 {
+        font-family: var(--font-serif);
+        font-size: clamp(28px, 4vw, 38px);
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 18px;
+        line-height: 1.2;
+    }
+    .result-section p {
+        font-size: 17px;
+        line-height: 1.7;
+        color: #555;
+        margin: 0;
+    }
 
 
     .bundle-selector { margin-bottom: 35px; display: flex; flex-direction: column; gap: 15px; }
@@ -148,7 +216,7 @@
     .bundle-info p { font-size: 13px; color: #777; }
     .bundle-price { font-weight: 700; font-size: 18px; }
 
-    .atc-btn { width: 100%; background: #000; color: #fff; padding: 22px; border: none; border-radius: 50px; font-weight: 700; font-size: 15px; text-transform: uppercase; cursor: pointer; letter-spacing: 2px; transition: 0.3s; margin-bottom: 45px; }
+    .atc-btn { width: 100%; background: #000; color: #fff; padding: 22px; border: none; border-radius: 50px; font-weight: 700; font-size: 15px; text-transform: none; cursor: pointer; letter-spacing: 0.02em; transition: 0.3s; margin-bottom: 45px; }
     .atc-btn:hover { background: var(--secondary); color: #000; }
 
     .accordion { border-top: 1px solid var(--border); }
@@ -446,9 +514,21 @@
             </div>
         </div>
         <div class="product-details">
-            <p class="subtitle">Purifying scalp cleanse</p>
+            <p class="subtitle">Gentle Hair Cleanser</p>
             <h1>Avyen Scalp Cleanse</h1>
-            <div class="description">A gentle, plant-based hair cleanser formulated to cleanse the scalp effectively while maintaining its natural balance.</div>
+            <p class="offer-badge">BOGO Offer: Get Conditioning Creme Worth Rs.2,090 FREE</p>
+            <div class="description">A gentle, plant-based hair cleanser formulated to cleanse the scalp effectively while maintaining its natural balance. Designed to support scalp comfort and leave hair feeling clean, refreshed, and healthy.</div>
+
+            <div class="key-benefits">
+                <h3>Key Benefits</h3>
+                <ul>
+                    <li>Gently cleanses scalp and hair</li>
+                    <li>Helps soothe and calm the scalp</li>
+                    <li>Maintains natural balance</li>
+                    <li>Leaves hair clean and refreshed</li>
+                    <li>Suitable for regular use</li>
+                </ul>
+            </div>
 
             <div class="bundle-selector">
                 <div class="bundle-card selected">
@@ -461,28 +541,43 @@
                 <div class="bundle-card">
                     <div class="bundle-info">
                         <h4>BOGO</h4>
-                        <p>Buy Shampoo, Get Avyen Conditioning Creme Free</p>
+                        <p>Buy Scalp Cleanse, Get Avyen Conditioning Creme Free</p>
                     </div>
                     <div class="bundle-price">Rs. 2,390</div>
                 </div>
             </div>
 
-            <button class="atc-btn" onclick="gAddToCart('{{ product.variants.first.id }}', this)">Buy Now &amp; Get Conditioner Free</button>
+            <button class="atc-btn" onclick="gAddToCart('{{ product.variants.first.id }}', this)">Add to Cart — Get Conditioner Free</button>
 
             <div class="accordion">
                 <div class="accordion-item">
-                    <button class="accordion-header" onclick="this.parentElement.classList.toggle('active')">Ingredients <span>+</span></button>
-                    <div class="accordion-content">Aqua, Sodium Lauroyl Methyl Isethionate, Salicylic Acid, Mentha Piperita (Peppermint) Oil, Melaleuca Alternifolia (Tea Tree) Leaf Oil, Biotin, Panthenol, Rosemary Extract.</div>
+                    <button type="button" class="accordion-header" onclick="this.parentElement.classList.toggle('active')">Ingredients <span>+</span></button>
+                    <div class="accordion-content">Rice, Rosemary, Aloe Vera, Fenugreek, Hibiscus, Flaxseed Gel, Vitamin B5, Coconut Milk, Black Castor Oil, Lavender, Peppermint, Tea Tree.</div>
                 </div>
                 <div class="accordion-item">
-                    <button class="accordion-header" onclick="this.parentElement.classList.toggle('active')">How to Use <span>+</span></button>
-                    <div class="accordion-content">Apply to wet hair, focusing on the scalp. Massage gently for 2 minutes to allow the active botanicals to penetrate. Rinse thoroughly with lukewarm water.</div>
+                    <button type="button" class="accordion-header" onclick="this.parentElement.classList.toggle('active')">How to Use <span>+</span></button>
+                    <div class="accordion-content">Apply to wet hair and scalp. Massage gently and leave on for 1–2 minutes. Rinse thoroughly. Use 2–3 times weekly.</div>
                 </div>
                 <div class="accordion-item">
-                    <button class="accordion-header" onclick="this.parentElement.classList.toggle('active')">The Result <span>+</span></button>
-                    <div class="accordion-content">Hair feels clean and refreshed; scalp feels balanced with regular use as directed.</div>
+                    <button type="button" class="accordion-header" onclick="this.parentElement.classList.toggle('active')">Hair Type <span>+</span></button>
+                    <div class="accordion-content">Suitable for all hair types.</div>
+                </div>
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" onclick="this.parentElement.classList.toggle('active')">Free From <span>+</span></button>
+                    <div class="accordion-content">Free from sulfates, silicones, and parabens.</div>
+                </div>
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" onclick="this.parentElement.classList.toggle('active')">Caution <span>+</span></button>
+                    <div class="accordion-content">For external use only. Avoid contact with eyes. Discontinue use if irritation occurs.</div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="result-section" aria-labelledby="scalp-result-heading">
+        <div class="result-section__inner">
+            <h2 id="scalp-result-heading">Clean. Fresh. Balanced.</h2>
+            <p>With consistent use, Avyen Scalp Cleanse helps hair and scalp feel cleaner, fresher, and naturally balanced without a harsh stripped feeling.</p>
         </div>
     </section>
 
