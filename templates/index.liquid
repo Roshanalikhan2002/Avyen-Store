@@ -170,15 +170,32 @@
         text-transform: uppercase;
         color: #3d2b2b;
         line-height: 1.45;
-        padding: 18px 16px;
+        padding: 20px 16px 22px;
         background: rgba(255,255,255,0.65);
         border: 1px solid rgba(61, 43, 43, 0.1);
         border-radius: 12px;
         text-align: center;
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
-        min-height: 72px;
+        justify-content: flex-start;
+        gap: 14px;
+        min-height: 160px;
+    }
+    .trust-badge__seal {
+        width: 72px;
+        height: 72px;
+        flex-shrink: 0;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
+    }
+    .trust-badge__seal svg {
+        width: 72px;
+        height: 72px;
+        display: block;
+    }
+    .trust-badge__text {
+        max-width: 22ch;
+        margin: 0 auto;
     }
     @media (max-width: 900px) {
         .trust-badges-inner {
@@ -204,10 +221,11 @@
             flex: 0 0 min(88vw, 340px);
             scroll-snap-align: center;
             scroll-snap-stop: always;
-            min-height: 88px;
-            padding: 20px 18px;
+            min-height: 170px;
+            padding: 22px 18px 24px;
             font-size: 11px;
         }
+        .trust-badge__text { max-width: 28ch; }
     }
 
     .section-container { padding: 100px 5%; text-align: center; }
@@ -503,10 +521,80 @@
 
     <section class="trust-badges" aria-label="Why shop with Avyen">
         <div class="trust-badges-inner">
-            <div class="trust-badge">Cash on Delivery Available</div>
-            <div class="trust-badge">Fast Delivery Across Pakistan</div>
-            <div class="trust-badge">Plant-Based &amp; Naturally Derived Ingredients</div>
-            <div class="trust-badge">Free from Harsh Sulfates, Parabens &amp; Synthetic Dyes</div>
+            <div class="trust-badge">
+                <div class="trust-badge__seal" aria-hidden="true">
+                    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img">
+                        <defs>
+                            <linearGradient id="sealGold1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#f0d78c"/><stop offset="45%" stop-color="#fff8e7"/><stop offset="100%" stop-color="#c9a227"/>
+                            </linearGradient>
+                        </defs>
+                        <path fill="url(#sealGold1)" stroke="#a67c00" stroke-width="1.2" d="M40 2l4.2 9.6 10.4-3.3-2.1 10.7 9.1 6.2-8.3 6.8 2.4 10.6-10.5-1.5L40 52l-9.2 7.2-10.5 1.5 2.4-10.6-8.3-6.8 9.1-6.2-2.1-10.7 10.4 3.3z"/>
+                        <path fill="#c41e3a" d="M12 48h56v10c-9.3 4-17.4 6-28 6s-18.7-2-28-6V48z"/>
+                        <rect x="27" y="30" width="26" height="17" rx="3" fill="#1a2744"/>
+                        <path d="M27 33h26v3H27z" fill="#fff8e7" opacity=".28"/>
+                        <path d="M36 24h8v9h-8z" fill="#c41e3a"/>
+                        <circle cx="34" cy="17" r="1.4" fill="#1a2744"/><circle cx="40" cy="15" r="1.4" fill="#1a2744"/><circle cx="46" cy="17" r="1.4" fill="#1a2744"/>
+                    </svg>
+                </div>
+                <span class="trust-badge__text">Cash on Delivery Available</span>
+            </div>
+            <div class="trust-badge">
+                <div class="trust-badge__seal" aria-hidden="true">
+                    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img">
+                        <defs>
+                            <linearGradient id="sealGold2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#f0d78c"/><stop offset="45%" stop-color="#fff8e7"/><stop offset="100%" stop-color="#c9a227"/>
+                            </linearGradient>
+                        </defs>
+                        <path fill="url(#sealGold2)" stroke="#a67c00" stroke-width="1.2" d="M40 2l4.2 9.6 10.4-3.3-2.1 10.7 9.1 6.2-8.3 6.8 2.4 10.6-10.5-1.5L40 52l-9.2 7.2-10.5 1.5 2.4-10.6-8.3-6.8 9.1-6.2-2.1-10.7 10.4 3.3z"/>
+                        <path fill="#c41e3a" d="M12 48h56v10c-9.3 4-17.4 6-28 6s-18.7-2-28-6V48z"/>
+                        <path fill="#1a2744" d="M18 36h32v9H18zm32 0h12l5 5v4H50z"/>
+                        <circle cx="26" cy="47" r="3" fill="#fff8e7" stroke="#1a2744" stroke-width="1.2"/>
+                        <circle cx="48" cy="47" r="3" fill="#fff8e7" stroke="#1a2744" stroke-width="1.2"/>
+                        <circle cx="34" cy="17" r="1.4" fill="#1a2744"/><circle cx="40" cy="15" r="1.4" fill="#1a2744"/><circle cx="46" cy="17" r="1.4" fill="#1a2744"/>
+                    </svg>
+                </div>
+                <span class="trust-badge__text">Fast Delivery Across Pakistan</span>
+            </div>
+            <div class="trust-badge">
+                <div class="trust-badge__seal" aria-hidden="true">
+                    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img">
+                        <defs>
+                            <linearGradient id="sealGold3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#f0d78c"/><stop offset="45%" stop-color="#fff8e7"/><stop offset="100%" stop-color="#c9a227"/>
+                            </linearGradient>
+                            <linearGradient id="leafGr" x1="0%" y1="100%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#1a2744"/><stop offset="100%" stop-color="#2d5016"/>
+                            </linearGradient>
+                        </defs>
+                        <path fill="url(#sealGold3)" stroke="#a67c00" stroke-width="1.2" d="M40 2l4.2 9.6 10.4-3.3-2.1 10.7 9.1 6.2-8.3 6.8 2.4 10.6-10.5-1.5L40 52l-9.2 7.2-10.5 1.5 2.4-10.6-8.3-6.8 9.1-6.2-2.1-10.7 10.4 3.3z"/>
+                        <path fill="#c41e3a" d="M12 48h56v10c-9.3 4-17.4 6-28 6s-18.7-2-28-6V48z"/>
+                        <path fill="url(#leafGr)" d="M40 18c-8 10-12 22-10 32 2-8 8-14 14-16-6-4-4-12-4-16z"/>
+                        <path fill="#4a7c23" d="M40 18c8 8 12 18 10 28-4-6-10-10-16-11 8-5 6-13 6-17z" opacity=".85"/>
+                        <path fill="none" stroke="#fff8e7" stroke-width="1" d="M40 22v18" opacity=".5"/>
+                        <circle cx="34" cy="17" r="1.4" fill="#1a2744"/><circle cx="40" cy="15" r="1.4" fill="#1a2744"/><circle cx="46" cy="17" r="1.4" fill="#1a2744"/>
+                    </svg>
+                </div>
+                <span class="trust-badge__text">Plant-Based &amp; Naturally Derived Ingredients</span>
+            </div>
+            <div class="trust-badge">
+                <div class="trust-badge__seal" aria-hidden="true">
+                    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img">
+                        <defs>
+                            <linearGradient id="sealGold4" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#f0d78c"/><stop offset="45%" stop-color="#fff8e7"/><stop offset="100%" stop-color="#c9a227"/>
+                            </linearGradient>
+                        </defs>
+                        <path fill="url(#sealGold4)" stroke="#a67c00" stroke-width="1.2" d="M40 2l4.2 9.6 10.4-3.3-2.1 10.7 9.1 6.2-8.3 6.8 2.4 10.6-10.5-1.5L40 52l-9.2 7.2-10.5 1.5 2.4-10.6-8.3-6.8 9.1-6.2-2.1-10.7 10.4 3.3z"/>
+                        <path fill="#c41e3a" d="M12 48h56v10c-9.3 4-17.4 6-28 6s-18.7-2-28-6V48z"/>
+                        <path fill="#1a2744" d="M40 26 L48 31 V42 Q48 49 40 52 Q32 49 32 42 V31 Z"/>
+                        <path fill="none" stroke="#fff8e7" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M35 37l5 5 10-10"/>
+                        <circle cx="34" cy="17" r="1.4" fill="#1a2744"/><circle cx="40" cy="15" r="1.4" fill="#1a2744"/><circle cx="46" cy="17" r="1.4" fill="#1a2744"/>
+                    </svg>
+                </div>
+                <span class="trust-badge__text">Free from Harsh Sulfates, Parabens &amp; Synthetic Dyes</span>
+            </div>
         </div>
     </section>
 
