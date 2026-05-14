@@ -302,12 +302,55 @@
             </div>`;
         }).join('');
     }
+    /** BOGO: gift Conditioning Creme qty should match total Scalp Cleanse (non-gift) qty */
+    const G_BOGO_MAIN = 'scalp-cleanse';
+    const G_BOGO_GIFT = 'conditioning-creme';
+    async function gSyncBogoGiftQuantities() {
+        let cart = await fetch('/cart.js').then((r) => r.json());
+        for (let iter = 0; iter < 20; iter++) {
+            let mainTotal = 0;
+            const gifts = [];
+            cart.items.forEach((item, i) => {
+                const line = i + 1;
+                if (item.handle === G_BOGO_MAIN && !gIsGiftLine(item)) mainTotal += item.quantity;
+                if (item.handle === G_BOGO_GIFT && gIsGiftLine(item)) gifts.push({ line, qty: item.quantity });
+            });
+            const giftTotal = gifts.reduce((s, g) => s + g.qty, 0);
+            if (!gifts.length || giftTotal === mainTotal) break;
+            let res;
+            if (giftTotal > mainTotal) {
+                const last = gifts[gifts.length - 1];
+                const dec = Math.min(last.qty, giftTotal - mainTotal);
+                res = await fetch('/cart/change.js', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ line: last.line, quantity: last.qty - dec })
+                });
+            } else {
+                const first = gifts[0];
+                const inc = mainTotal - giftTotal;
+                res = await fetch('/cart/change.js', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ line: first.line, quantity: first.qty + inc })
+                });
+            }
+            if (!res.ok) break;
+            cart = await fetch('/cart.js').then((r) => r.json());
+        }
+    }
     async function gChangeQty(line, qty) {
-        await fetch('/cart/change.js', {
+        qty = Math.max(0, qty);
+        const res = await fetch('/cart/change.js', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ line, quantity: qty })
+            body: JSON.stringify({ line: line, quantity: qty })
         });
+        if (!res.ok) {
+            gFetchCart();
+            return;
+        }
+        await gSyncBogoGiftQuantities();
         gFetchCart();
     }
     async function gAddToCart(id, btn, qty = 1) {
