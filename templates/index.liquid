@@ -214,11 +214,11 @@
         background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.9) 0%, rgba(201, 162, 39, 0.14) 55%, rgba(201, 162, 39, 0.08) 100%);
         border: 1px solid rgba(201, 162, 39, 0.22);
     }
-    .trust-badge__icon svg {
+    .trust-badge__icon img {
         width: 26px;
         height: 26px;
         display: block;
-        stroke-width: 1.85;
+        object-fit: contain;
     }
     .trust-badge__text {
         max-width: 15rem;
@@ -238,7 +238,7 @@
         .trust-badges-inner { gap: 12px; }
         .trust-badge { padding: 20px 12px; font-size: 12.5px; }
         .trust-badge__icon { width: 50px; height: 50px; }
-        .trust-badge__icon svg { width: 24px; height: 24px; }
+        .trust-badge__icon img { width: 24px; height: 24px; }
     }
 
     .section-container { padding: 100px 5%; text-align: center; }
@@ -797,41 +797,25 @@
         <div class="trust-badges-inner">
             <div class="trust-badge">
                 <div class="trust-badge__icon" aria-hidden="true">
-                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="11" y="13" width="26" height="20" rx="2.5"/>
-                        <line x1="15" y1="19" x2="29" y2="19"/>
-                        <circle cx="34.5" cy="30.5" r="5.5"/>
-                        <path d="M32 30.5l1.6 1.6 3.8-4.3"/>
-                    </svg>
+                    <img src="{{ 'badge-cash-on-delivery.png' | asset_url }}" alt="" width="26" height="26" loading="lazy">
                 </div>
                 <span class="trust-badge__text">Cash on Delivery Available</span>
             </div>
             <div class="trust-badge">
                 <div class="trust-badge__icon" aria-hidden="true">
-                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M10 26h19v9H10z"/>
-                        <path d="M29 26V17h7.5l5.5 5.5V26H29"/>
-                        <circle cx="15.5" cy="37" r="3"/>
-                        <circle cx="26.5" cy="37" r="3"/>
-                    </svg>
+                    <img src="{{ 'badge-fast-delivery.png' | asset_url }}" alt="" width="26" height="26" loading="lazy">
                 </div>
                 <span class="trust-badge__text">Fast Delivery Across Pakistan</span>
             </div>
             <div class="trust-badge">
                 <div class="trust-badge__icon" aria-hidden="true">
-                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M24 11 Q14 20 17 30 Q19 36 24 38 Q29 36 31 30 Q34 20 24 11 Z"/>
-                        <path d="M24 14v22"/>
-                    </svg>
+                    <img src="{{ 'badge-nourishing.png' | asset_url }}" alt="" width="26" height="26" loading="lazy">
                 </div>
                 <span class="trust-badge__text">Plant-Based &amp; Naturally Derived Ingredients</span>
             </div>
             <div class="trust-badge">
                 <div class="trust-badge__icon" aria-hidden="true">
-                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M24 10c-8 10-11 19-5 25 5 5 13 4 16-2 3-8-3-17-11-23z"/>
-                        <path d="M19 23l4 4 8-9"/>
-                    </svg>
+                    <img src="{{ 'badge-no-chemical.png' | asset_url }}" alt="" width="26" height="26" loading="lazy">
                 </div>
                 <span class="trust-badge__text">Free from Harsh Sulfates, Parabens &amp; Synthetic Dyes</span>
             </div>
