@@ -694,6 +694,19 @@
             body: JSON.stringify({ line, quantity: 0 })
         });
     }
+    async function gRemoveAllBogoMainLines() {
+        for (let n = 0; n < 10; n++) {
+            const cart = await fetch('/cart.js').then((r) => r.json());
+            const mi = cart.items.findIndex((item) => gIsBogoMainLine(item));
+            if (mi < 0) break;
+            const res = await fetch('/cart/change.js', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ line: mi + 1, quantity: 0 })
+            });
+            if (!res.ok) break;
+        }
+    }
     async function gSyncBogoGiftQuantities() {
         let cart = await fetch('/cart.js').then((r) => r.json());
         for (let iter = 0; iter < 20; iter++) {
@@ -739,6 +752,18 @@
         qty = Math.max(0, qty);
         const cartBefore = await fetch('/cart.js').then((r) => r.json());
         const changed = cartBefore.items[line - 1];
+        if (qty === 0 && changed && gIsBogoGiftLine(changed)) {
+            await gRemoveAllBogoMainLines();
+            for (let n = 0; n < 10; n++) {
+                const cart = await fetch('/cart.js').then((r) => r.json());
+                const gi = cart.items.findIndex((item) => gIsBogoGiftLine(item));
+                if (gi < 0) break;
+                await gRemoveBogoGiftLine(gi + 1);
+            }
+            await gSyncBogoGiftQuantities();
+            gFetchCart();
+            return;
+        }
         const res = await fetch('/cart/change.js', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
