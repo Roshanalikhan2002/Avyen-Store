@@ -3,8 +3,9 @@
   flow_step: 1 Add to Cart | 2 In Cart | 3 Checkout | 4 Order Placed
 {% endcomment %}
 {% assign flow_step = flow_step | default: 1 %}
-<div class="order-flow" data-order-flow data-step="{{ flow_step }}" aria-label="Order journey">
-    <p class="order-flow__title">How your order works</p>
+<div class="order-flow{% if compact %} order-flow--compact{% endif %}" data-order-flow data-step="{{ flow_step }}" aria-label="Order journey">
+    {% unless compact %}<p class="order-flow__title">How your order works</p>{% endunless %}
+    {% if compact %}<p class="order-flow__title order-flow__title--compact">Your order journey</p>{% endif %}
     <div class="order-flow__track">
         <div class="order-flow__line" aria-hidden="true"><span class="order-flow__line-fill"></span></div>
         <ol class="order-flow__steps">

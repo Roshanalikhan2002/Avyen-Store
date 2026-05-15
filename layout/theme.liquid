@@ -311,6 +311,60 @@
             .order-flow__label { font-size: 9px; }
             .order-flow__line { left: 10%; right: 10%; top: 18px; }
         }
+        .order-flow--compact {
+            margin: 0;
+            padding: 14px 12px 12px;
+            max-width: none;
+            border-radius: 0;
+            border: none;
+            border-bottom: 1px solid #eee;
+            background: #faf8f5;
+        }
+        .order-flow__title--compact {
+            margin-bottom: 12px;
+            font-size: 10px;
+        }
+        .order-flow--compact .order-flow__dot { width: 32px; height: 32px; }
+        .order-flow--compact .order-flow__dot-inner { font-size: 10px; }
+        .order-flow--compact .order-flow__label { font-size: 8px; }
+        .order-flow--compact .order-flow__line { top: 16px; }
+        .order-flow--compact .order-flow__hint { margin-top: 10px; font-size: 11px; }
+
+        /* Bottom timeline bar (visible when adding to cart) */
+        .order-flow-bottom-bar {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 960;
+            padding: 0 12px calc(12px + env(safe-area-inset-bottom, 0px));
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(110%);
+            transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease, visibility 0.35s ease;
+        }
+        .order-flow-bottom-bar.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .order-flow-bottom-bar .order-flow {
+            margin: 0;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.12);
+            pointer-events: auto;
+        }
+        body:has(.sticky-mobile-atc) .order-flow-bottom-bar.is-visible {
+            padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+        }
+        body:has(.global-cart-drawer.active) .order-flow-bottom-bar {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(110%);
+        }
 
         /* ===== GLOBAL CART DRAWER ===== */
         :root {
@@ -491,6 +545,9 @@
         <h3>Your Cart</h3>
         <button class="gcd-close" onclick="gCloseCart()">&times;</button>
     </div>
+    <div class="gcd-order-flow" id="gcdOrderFlow" hidden>
+        {% render 'order-flow-animated', flow_step: 2, compact: true %}
+    </div>
     <div class="gcd-items" id="gcdItems">
         <div class="gcd-empty">🛒 Your cart is empty.<br><a href="/collections/all">Start Shopping</a></div>
     </div>
@@ -502,6 +559,10 @@
         <a href="/checkout" class="gcd-checkout-btn">Checkout</a>
         <button class="gcd-view-cart" onclick="window.location='/cart'">View Full Cart</button>
     </div>
+</div>
+
+<div class="order-flow-bottom-bar" id="orderFlowBottomBar" hidden aria-live="polite">
+    {% render 'order-flow-animated', flow_step: 2, compact: true %}
 </div>
 
 <div class="g-atc-toast" id="gAtcToast">&#10003; Added to Cart!</div>
@@ -535,6 +596,7 @@
         document.getElementById('gCartDrawer').classList.remove('active');
         document.getElementById('gCartOverlay').classList.remove('active');
         document.body.style.overflow = '';
+        gHideOrderFlowBar();
     }
     function gShowToast() {
         const t = document.getElementById('gAtcToast');
@@ -590,9 +652,16 @@
         if (!cart.item_count) {
             items.innerHTML = '<div class="gcd-empty">🛒 Your cart is empty.<br><a href="/collections/all">Start Shopping</a></div>';
             footer.style.display = 'none';
+            gToggleCartOrderFlow(false);
             return;
         }
         footer.style.display = 'block';
+        let flowStep = 2;
+        try {
+            const saved = parseInt(sessionStorage.getItem('avyen_order_flow_step') || '2', 10);
+            if (saved >= 2 && saved <= 4) flowStep = saved;
+        } catch (e) {}
+        gToggleCartOrderFlow(true, flowStep);
         total.textContent = gFormatMoney(cart.total_price);
         items.innerHTML = cart.items.map((item, idx) => {
             const gift = gIsGiftLine(item);
@@ -701,9 +770,7 @@
             });
             if (!res.ok) throw new Error(await res.text());
             if (btn) { btn.textContent = '✓ ADDED!'; setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 2000); }
-            gSetOrderFlowStep(2);
-            gShowToast();
-            gOpenCart();
+            gAfterAddToCartSuccess();
         } catch (e) {
             alert('Could not add to cart. Please try again.');
             if (btn) { btn.textContent = orig; btn.disabled = false; }
@@ -730,13 +797,41 @@
             });
             if (!res.ok) throw new Error(await res.text());
             if (btn) { btn.textContent = '✓ ADDED!'; setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 2000); }
-            gSetOrderFlowStep(2);
-            gShowToast();
-            gOpenCart();
+            gAfterAddToCartSuccess();
         } catch (e) {
             alert('Could not add to cart. Please try again.');
             if (btn) { btn.textContent = orig; btn.disabled = false; }
         }
+    }
+    function gShowOrderFlowBar() {
+        const bar = document.getElementById('orderFlowBottomBar');
+        if (!bar) return;
+        bar.hidden = false;
+        requestAnimationFrame(() => bar.classList.add('is-visible'));
+    }
+    function gHideOrderFlowBar() {
+        const bar = document.getElementById('orderFlowBottomBar');
+        if (!bar) return;
+        bar.classList.remove('is-visible');
+        setTimeout(() => {
+            if (!bar.classList.contains('is-visible')) bar.hidden = true;
+        }, 450);
+    }
+    function gToggleCartOrderFlow(show, step) {
+        const wrap = document.getElementById('gcdOrderFlow');
+        if (!wrap) return;
+        wrap.hidden = !show;
+        if (show && step) gSetOrderFlowStep(step);
+    }
+    function gAfterAddToCartSuccess() {
+        gSetOrderFlowStep(2);
+        gShowOrderFlowBar();
+        gShowToast();
+        setTimeout(() => {
+            gHideOrderFlowBar();
+            gToggleCartOrderFlow(true, 2);
+            gOpenCart();
+        }, 1100);
     }
     const gOrderFlowHints = {
         1: 'Tap Add to Cart to start your order.',
