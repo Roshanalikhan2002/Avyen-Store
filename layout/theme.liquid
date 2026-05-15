@@ -125,7 +125,7 @@
             body:has(.global-cart-drawer.active) .sticky-mobile-atc {
                 z-index: 900;
             }
-            body:has(.sticky-mobile-atc) .g-atc-toast {
+            body:has(.sticky-mobile-atc) .g-atc-toast.show {
                 bottom: calc(100px + env(safe-area-inset-bottom, 0px));
             }
         }
@@ -243,18 +243,26 @@
             vertical-align: super; margin-left: 2px; line-height: 1;
         }
 
-        /* Toast */
+        /* Toast — hidden until gShowToast() after successful add */
         .g-atc-toast {
             position: fixed; bottom: 30px; left: 50%;
-            transform: translateX(-50%) translateY(100px);
+            transform: translateX(-50%) translateY(12px);
             background: var(--cart-primary); color: white;
             padding: 14px 28px; border-radius: 40px;
             font-weight: 600; font-size: 14px; z-index: 99999;
-            transition: transform 0.4s ease;
+            transition: transform 0.4s ease, opacity 0.35s ease, visibility 0.35s ease;
             white-space: nowrap; box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             font-family: 'Inter', sans-serif;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
-        .g-atc-toast.show { transform: translateX(-50%) translateY(0); }
+        .g-atc-toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
 
         /* ===== GLOBAL SEARCH OVERLAY ===== */
         .search-overlay {
