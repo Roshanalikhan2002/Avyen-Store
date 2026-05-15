@@ -1,0 +1,30 @@
+{% comment %}
+  Animated order journey (steps 1–4).
+  flow_step: 1 Add to Cart | 2 In Cart | 3 Checkout | 4 Order Placed
+{% endcomment %}
+{% assign flow_step = flow_step | default: 1 %}
+<div class="order-flow" data-order-flow data-step="{{ flow_step }}" aria-label="Order journey">
+    <p class="order-flow__title">How your order works</p>
+    <div class="order-flow__track">
+        <div class="order-flow__line" aria-hidden="true"><span class="order-flow__line-fill"></span></div>
+        <ol class="order-flow__steps">
+            <li class="order-flow__step" data-flow-step="1">
+                <span class="order-flow__dot"><span class="order-flow__dot-inner">1</span></span>
+                <span class="order-flow__label">Add to Cart</span>
+            </li>
+            <li class="order-flow__step" data-flow-step="2">
+                <span class="order-flow__dot"><span class="order-flow__dot-inner">2</span></span>
+                <span class="order-flow__label">In Your Cart</span>
+            </li>
+            <li class="order-flow__step" data-flow-step="3">
+                <span class="order-flow__dot"><span class="order-flow__dot-inner">3</span></span>
+                <span class="order-flow__label">Checkout</span>
+            </li>
+            <li class="order-flow__step" data-flow-step="4">
+                <span class="order-flow__dot"><span class="order-flow__dot-inner">4</span></span>
+                <span class="order-flow__label">Order Placed</span>
+            </li>
+        </ol>
+    </div>
+    <p class="order-flow__hint" data-flow-hint></p>
+</div>

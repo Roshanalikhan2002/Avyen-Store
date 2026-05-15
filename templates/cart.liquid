@@ -152,6 +152,8 @@
             <p>{{ cart.item_count }} items in your cart</p>
         </div>
 
+        {% render 'order-flow-animated', flow_step: 2 %}
+
         <form action="/cart" method="post" novalidate>
             <table class="cart-table">
                 <thead>

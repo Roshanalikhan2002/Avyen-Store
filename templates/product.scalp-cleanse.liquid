@@ -579,6 +579,8 @@
                 </div>
             </div>
 
+            {% render 'order-flow-animated', flow_step: 1 %}
+
             {% assign gift_product = all_products['conditioning-creme'] %}
             {% if gift_product != blank %}
             <button type="button" class="atc-btn" onclick="gAddToCartWithGift('{{ product.selected_or_first_available_variant.id }}', '{{ gift_product.selected_or_first_available_variant.id }}', this)">Add to Cart — Get Conditioner Free</button>
