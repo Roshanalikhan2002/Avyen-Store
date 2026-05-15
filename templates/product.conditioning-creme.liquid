@@ -390,8 +390,47 @@
         .product-gallery { position: relative; top: 0; }
         .main-image { height: 450px; }
         .feature-grid { grid-template-columns: 1fr; padding: 80px 5%; }
+        .product-details {
+            min-width: 0;
+            width: 100%;
+            max-width: 100%;
+        }
         .product-details h1 { font-size: 36px; }
         .header-icon-account { display: none; }
+        .key-benefits-accordion {
+            width: calc(100% - 16px);
+            max-width: calc(100% - 16px);
+            margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
+            box-shadow: 0 4px 16px rgba(201, 162, 39, 0.1);
+        }
+        .key-benefits-trigger {
+            padding: 14px 12px;
+            gap: 8px;
+        }
+        .key-benefits-trigger__icon {
+            width: 38px;
+            height: 38px;
+        }
+        .key-benefits-trigger__icon svg {
+            width: 18px;
+            height: 18px;
+        }
+        .key-benefits-trigger__title {
+            font-size: 16px;
+        }
+        .key-benefits-trigger__point {
+            font-size: 9px;
+        }
+        .key-benefits-trigger__cta {
+            padding-left: 4px;
+        }
+        .key-benefits-accordion .accordion-content--benefits {
+            margin: 0 10px 12px;
+            padding-left: 14px;
+            padding-right: 14px;
+        }
     }
 
     .community-section {
