@@ -25,6 +25,57 @@
     <style>
         body, html { margin: 0; padding: 0; width: 100%; }
 
+        /* Scrolling announcement bar (all pages) */
+        .announcement-bar {
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px 0;
+            line-height: 1.35;
+        }
+        .announcement-bar__track {
+            display: inline-flex;
+            align-items: center;
+            width: max-content;
+            animation: avyen-announcement-marquee 28s linear infinite;
+            will-change: transform;
+        }
+        .announcement-bar__text {
+            display: inline-block;
+            flex-shrink: 0;
+            padding-right: 4rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            white-space: nowrap;
+        }
+        @keyframes avyen-announcement-marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @media (max-width: 768px) {
+            .announcement-bar { padding: 9px 0; }
+            .announcement-bar__text {
+                font-size: 10px;
+                letter-spacing: 0.1em;
+                padding-right: 3rem;
+            }
+            .announcement-bar__track {
+                animation-duration: 22s;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .announcement-bar__track {
+                animation: none;
+                width: 100%;
+                justify-content: center;
+            }
+            .announcement-bar__text[aria-hidden="true"] { display: none; }
+        }
+
         /* Navbar logo image — tight crop + larger display */
         header a.logo.site-logo {
             display: inline-flex;

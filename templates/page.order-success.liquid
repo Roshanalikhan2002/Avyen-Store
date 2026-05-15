@@ -3,7 +3,6 @@
     :root { --primary: #121212; --secondary: #c9a227; --font-serif: 'Playfair Display', serif; --font-sans: 'Inter', sans-serif; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: var(--font-sans); color: var(--primary); background: #fff; }
-    .announcement-bar { background: #000; color: #fff; text-align: center; padding: 10px 0; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
     header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; border-bottom: 1px solid #eee; background: #fff; }
     nav a { text-decoration: none; color: #000; font-weight: 600; font-size: 11px; text-transform: uppercase; margin-right: 10px; }
     .order-success-main { padding: 60px 5% 80px; max-width: 640px; margin: 0 auto; text-align: center; }
@@ -21,7 +20,7 @@
 
 {% assign wa_digits = '923257228456' %}
 
-<div class="announcement-bar">Limited-Time BOGO Offer — Buy Scalp Cleanse &amp; Get Conditioning Creme FREE</div>
+{% render 'announcement-bar' %}
 
 <header>
     <nav><a href="/">Home</a><a href="/collections/all">Shop</a></nav>

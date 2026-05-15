@@ -15,8 +15,6 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: var(--font-sans); color: var(--text); background: var(--background); overflow-x: hidden; }
 
-    .announcement-bar { background: #000; color: #fff; text-align: center; padding: 10px 0; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
-
     header { 
         display: flex; justify-content: space-between; align-items: center; 
         padding: 20px 5%; border-bottom: 1px solid #eee; background: #fff;
@@ -96,7 +94,6 @@
     .checkout-btn:hover { background: var(--secondary); color: #fff; }
 
     @media (max-width: 768px) {
-        .announcement-bar { font-size: 10px; padding: 12px 3%; white-space: normal; line-height: 1.35; }
         header { justify-content: flex-end; }
         nav { display: none; }
         .menu-btn { display: block; position: absolute; left: 5%; }
@@ -110,7 +107,7 @@
 
 {% assign wa_digits = '923257228456' %}
 
-<div class="announcement-bar">Limited-Time BOGO Offer — Buy Scalp Cleanse &amp; Get Conditioning Creme FREE</div>
+{% render 'announcement-bar' %}
 
 <header>
     <div class="menu-btn" onclick="toggleMenu()">
