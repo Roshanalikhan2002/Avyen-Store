@@ -259,7 +259,27 @@
     }
     function gIsGiftLine(item) {
         const p = item.properties;
-        return p && (p['Free gift'] != null || p['_gift'] != null);
+        if (!p) return false;
+        if (p['Free gift'] != null || p['_gift'] != null) return true;
+        if (Array.isArray(p)) {
+            return p.some((prop) => {
+                const name = prop && prop.name;
+                const val = String((prop && prop.value) || '');
+                return name === 'Free gift' || name === '_gift' || val.indexOf('BOGO') >= 0;
+            });
+        }
+        return Object.keys(p).some((k) => {
+            if (k === 'Free gift' || k === '_gift') return true;
+            return String(p[k] || '').indexOf('BOGO') >= 0;
+        });
+    }
+    const G_BOGO_MAIN = 'scalp-cleanse';
+    const G_BOGO_GIFT = 'conditioning-creme';
+    function gIsBogoMainLine(item) {
+        return item && item.handle === G_BOGO_MAIN && !gIsGiftLine(item);
+    }
+    function gIsBogoGiftLine(item) {
+        return item && item.handle === G_BOGO_GIFT && gIsGiftLine(item);
     }
     function gLinePriceDisplay(item) {
         const final = item.final_line_price != null ? item.final_line_price : (item.line_price != null ? item.line_price : (item.price * item.quantity));
@@ -302,9 +322,14 @@
             </div>`;
         }).join('');
     }
-    /** BOGO: gift Conditioning Creme qty should match total Scalp Cleanse (non-gift) qty */
-    const G_BOGO_MAIN = 'scalp-cleanse';
-    const G_BOGO_GIFT = 'conditioning-creme';
+    /** BOGO: gift Conditioning Creme qty matches Scalp Cleanse; no scalp = remove all free gifts */
+    async function gRemoveBogoGiftLine(line) {
+        return fetch('/cart/change.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ line, quantity: 0 })
+        });
+    }
     async function gSyncBogoGiftQuantities() {
         let cart = await fetch('/cart.js').then((r) => r.json());
         for (let iter = 0; iter < 20; iter++) {
@@ -312,9 +337,16 @@
             const gifts = [];
             cart.items.forEach((item, i) => {
                 const line = i + 1;
-                if (item.handle === G_BOGO_MAIN && !gIsGiftLine(item)) mainTotal += item.quantity;
-                if (item.handle === G_BOGO_GIFT && gIsGiftLine(item)) gifts.push({ line, qty: item.quantity });
+                if (gIsBogoMainLine(item)) mainTotal += item.quantity;
+                if (gIsBogoGiftLine(item)) gifts.push({ line, qty: item.quantity });
             });
+            if (mainTotal === 0 && gifts.length > 0) {
+                const last = gifts[gifts.length - 1];
+                const res = await gRemoveBogoGiftLine(last.line);
+                if (!res.ok) break;
+                cart = await fetch('/cart.js').then((r) => r.json());
+                continue;
+            }
             const giftTotal = gifts.reduce((s, g) => s + g.qty, 0);
             if (!gifts.length || giftTotal === mainTotal) break;
             let res;
@@ -341,6 +373,8 @@
     }
     async function gChangeQty(line, qty) {
         qty = Math.max(0, qty);
+        const cartBefore = await fetch('/cart.js').then((r) => r.json());
+        const changed = cartBefore.items[line - 1];
         const res = await fetch('/cart/change.js', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -349,6 +383,14 @@
         if (!res.ok) {
             gFetchCart();
             return;
+        }
+        if (qty === 0 && changed && gIsBogoMainLine(changed)) {
+            for (let n = 0; n < 10; n++) {
+                const cart = await fetch('/cart.js').then((r) => r.json());
+                const gi = cart.items.findIndex((item) => gIsBogoGiftLine(item));
+                if (gi < 0) break;
+                await gRemoveBogoGiftLine(gi + 1);
+            }
         }
         await gSyncBogoGiftQuantities();
         gFetchCart();
