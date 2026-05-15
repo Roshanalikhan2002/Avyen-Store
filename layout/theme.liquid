@@ -128,6 +128,19 @@
             body:has(.sticky-mobile-atc) .g-atc-toast.show {
                 bottom: calc(100px + env(safe-area-inset-bottom, 0px));
             }
+            /* Homepage sticky ATC — hide while #shop product cards are in view */
+            #homeStickyAtc .sticky-mobile-atc {
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease, visibility 0.35s ease;
+            }
+            #homeStickyAtc.is-hidden .sticky-mobile-atc {
+                transform: translateY(110%);
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+            }
+            body:has(#homeStickyAtc:not(.is-hidden)) footer {
+                padding-bottom: calc(40px + 88px + env(safe-area-inset-bottom, 0px));
+            }
         }
 
         /* Animated order flow (product + cart) */

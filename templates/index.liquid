@@ -1030,6 +1030,28 @@
         </div>
         <div class="footer-bottom">&copy; {{ 'now' | date: '%Y' }} AVYEN. All rights reserved.</div>
     </footer>
+
+    {% assign scalp_product = all_products['scalp-cleanse'] %}
+    {% assign gift_product = all_products['conditioning-creme'] %}
+    <div id="homeStickyAtc">
+        {% if scalp_product != blank and gift_product != blank %}
+            {% render 'product-sticky-atc',
+                label: 'Add to Cart — Free Conditioner',
+                product_title: 'Scalp Cleanse',
+                price: 'Rs. 2,390',
+                variant_id: scalp_product.selected_or_first_available_variant.id,
+                gift_variant_id: gift_product.selected_or_first_available_variant.id
+            %}
+        {% elsif scalp_product != blank %}
+            {% render 'product-sticky-atc',
+                label: 'Add to Cart',
+                product_title: 'Scalp Cleanse',
+                price: 'Rs. 2,390',
+                variant_id: scalp_product.selected_or_first_available_variant.id
+            %}
+        {% endif %}
+    </div>
+
     <script>
         function toggleMenu() {
             document.getElementById('mobileDrawer').classList.toggle('active');
@@ -1039,5 +1061,30 @@
             document.getElementById('mobileDrawer').classList.remove('active');
             document.querySelector('.drawer-overlay').classList.remove('active');
         }
+        (function initHomeStickyAtc() {
+            const wrap = document.getElementById('homeStickyAtc');
+            const shop = document.getElementById('shop');
+            if (!wrap || !shop) return;
+            const mq = window.matchMedia('(max-width: 768px)');
+            let io = null;
+            function setHidden(hidden) {
+                wrap.classList.toggle('is-hidden', hidden);
+            }
+            function start() {
+                if (io) io.disconnect();
+                if (!mq.matches) {
+                    setHidden(false);
+                    return;
+                }
+                io = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        setHidden(entry.isIntersecting && entry.intersectionRatio > 0.08);
+                    });
+                }, { threshold: [0, 0.08, 0.2, 0.4, 0.6] });
+                io.observe(shop);
+            }
+            start();
+            mq.addEventListener('change', start);
+        })();
     </script>
 </main>
