@@ -723,6 +723,24 @@
     </section>
 </main>
 
+{% assign gift_product = all_products['conditioning-creme'] %}
+{% if gift_product != blank %}
+{% render 'product-sticky-atc',
+    label: 'Add to Cart — Free Conditioner',
+    product_title: 'Scalp Cleanse',
+    price: 'Rs. 2,390',
+    variant_id: product.selected_or_first_available_variant.id,
+    gift_variant_id: gift_product.selected_or_first_available_variant.id
+%}
+{% else %}
+{% render 'product-sticky-atc',
+    label: 'Add to Cart — Free Conditioner',
+    product_title: 'Scalp Cleanse',
+    price: 'Rs. 2,390',
+    variant_id: product.selected_or_first_available_variant.id
+%}
+{% endif %}
+
 <footer>
     <div class="footer-content">
         <div class="footer-col footer-brand">

@@ -1,0 +1,21 @@
+{% comment %}
+  Mobile sticky add-to-cart bar.
+  Pass link OR variant_id; optional gift_variant_id for BOGO.
+{% endcomment %}
+<div class="sticky-mobile-atc" role="region" aria-label="Add to cart">
+    <div class="sticky-mobile-atc__inner">
+        {% if product_title != blank %}
+            <p class="sticky-mobile-atc__meta">
+                <span class="sticky-mobile-atc__title">{{ product_title }}</span>
+                {% if price != blank %}<span class="sticky-mobile-atc__price">{{ price }}</span>{% endif %}
+            </p>
+        {% endif %}
+        {% if link != blank %}
+            <a href="{{ link }}" class="sticky-mobile-atc__btn">{{ label }}</a>
+        {% elsif gift_variant_id != blank and variant_id != blank %}
+            <button type="button" class="sticky-mobile-atc__btn" onclick="gAddToCartWithGift('{{ variant_id }}', '{{ gift_variant_id }}', this)">{{ label }}</button>
+        {% elsif variant_id != blank %}
+            <button type="button" class="sticky-mobile-atc__btn" onclick="gAddToCart('{{ variant_id }}', this)">{{ label }}</button>
+        {% endif %}
+    </div>
+</div>
